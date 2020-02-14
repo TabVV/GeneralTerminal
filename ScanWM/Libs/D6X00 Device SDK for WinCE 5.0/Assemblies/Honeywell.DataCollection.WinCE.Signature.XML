@@ -1,0 +1,474 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Honeywell.DataCollection.WinCE.Signature</name>
+    </assembly>
+    <members>
+        <member name="T:Honeywell.DataCollection.WinCE.Signature.SignatureControl">
+            <summary>
+            Class which encapsulates the signature capture control. The control provides a
+            simple set of methods and properties for a signature capture window including
+            vector based signature save/restore and signature image save. The control window
+            provides for a signature line, a signature line label and overlay text.  The use
+            of this control is demonstrated in the SignatureCapture sample application.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.#ctor">
+            <summary>
+            SignatureControl constructor. A user control of default size.
+            </summary>
+            <returns>None.</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.#ctor(System.Drawing.Rectangle)">
+            <summary>
+            SignatureControl constructor. A user control of default size.
+            </summary>
+            <param name="bounds">The initial position and size for the control</param>
+            <returns>None.</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.RaiseSignatureUpdate">
+            <summary>
+            Notify parent that signature data has changed
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.RGB(System.Drawing.Color)">
+            <summary>
+            Returns an Color converted to an RGB format suitable for the Windows API
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.DeleteMemoryBitmap">
+            <summary>
+            Deletes the memory bitmap, forcing it to be re-created in the next Paint event
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.CreateMemoryBitmap">
+            <summary>
+            Creates a memory bitmap if it doesn't exist. A graphics object is also created from it.
+            If data currently exists in the Segments array, it is drawn in the bitmap.
+            NOTE: All elements are drawn here: background, border, overlayed text, horiz line, etc.
+            If the bitmap already exists, does nothing.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.IsValidSignature">
+            <summary>
+            Verifies if the signature is valid. To be valid, at least one segment must have a length
+             greater than the _MinSigLength value.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.AddCurSegment">
+            <summary>
+            Adds the current segment to the Signature's Segment List. Doesn't clear the
+            curSegment object (caller must do, if needed)
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.StreamInt(System.IO.Stream,System.Int32)">
+            <summary>
+            Adds an Int32 to a Stream
+            </summary>
+            <param name="stream">Stream to receive the integer</param>
+            <param name="x">Int16 to stream</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.UnStreamInt(System.IO.Stream)">
+            <summary>
+            Extracts an Int16 or Int32 from a Stream. The returned value is always an Int32
+            </summary>
+            <param name="stream">Stream to get the integer from</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.GetRawData_CurSegment(System.Int32)">
+            <summary>
+            Returns the curSegment (ONLY) flattened to an array of bytes, suitable to be streamed.
+            See GetRawData() for a description of the data format. See OnMouseUp() for usage.
+            </summary>
+            <param name="start_point">Index of the 1st point to consider</param>
+            <returns>Array of bytes containing the signature data</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.OnMouseDown(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Mouse button click message handler. This method is used to track start of a signature.
+            </summary>
+            <param name="sender">Where message comes from.</param>
+            <param name="e">Mouse event class. Provides the position of the pen on the display.</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.OnMouseMove(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Called when user moves pen (as per signing the screen). The method stores the new vector
+            point then draws a line from the last point to the current one.
+            </summary>
+            <param name="sender">Where message comes from.</param>
+            <param name="e">Mouse event class. Provides the position of the pen on the display.</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.OnMouseUp(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Called when user lifts the pen. The last segment is added to the vector list and the
+            inprogress segment array is cleared.
+            </summary>
+            <param name="sender">Where message comes from.</param>
+            <param name="e">Mouse event class. Provides the position of the pen on the display.</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.OnResize(System.Object,System.EventArgs)">
+            <summary>
+            When control is resized, we force a redraw to reposition all displayed items correctly.
+            </summary>
+            <param name="sender">Where message comes from.</param>
+            <param name="e">Not used.</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.OnPaint(System.Object,System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Called when control is to be repainted.
+            </summary>
+            <param name="sender">Where message comes from.</param>
+            <param name="e">The Paint event arguments which include the current Graphics class instance.</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.OnTextChanged(System.EventArgs)">
+            <summary>
+            Called when overlay text is changed. Cause redraw.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Clear">
+            <summary>
+            Clears the current signature contents.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.SaveImage(System.String,Honeywell.DataCollection.WinCE.Signature.SignatureControl.ImgFormat,System.Int32)">
+            <summary>
+            Saves the current signature to a file as image, adding the overlayed text to the bottom.
+            The horizontal line and PromptText are NOT added to the image. Also, the image
+            background is saved as white.
+            </summary>
+            <param name="filename">Name of the file to create</param>
+            <param name="format">Image format to use</param>
+            <param name="compression">0-100, for JPG images only. 100=highest quality</param>
+            <returns>0 if OK</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.SaveVector(System.String)">
+            <summary>
+            Saves the current signature to a file as a vector. The overlayed text, Prompt text and
+            horizontal line are NOT included in the vector.
+            </summary>
+            <param name="filename">Name of the file to create</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.LoadVector(System.String)">
+            <summary>
+            Loads a file containing a vector that describes a signature, and re-draws the signature.
+            </summary>
+            <param name="filename">Name of the file to read</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.GetRawData">
+            <summary>
+            Returns the signature data flattened to an array of bytes, suitable to be streamed.
+            Data consists of Int16 or Int32 elements as follows: Image Width, Image Height,
+            #Segments and Segment data. The "Segment Data" contains the following, for EACH segment:
+            #Segment's points, P1.x, P1.y, P2.x, P2.y, ...
+            </summary>
+            <returns>Array of bytes containing the signature data</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.SetRawData(System.Byte[])">
+            <summary>
+            Builds and displays a Signature using the raw data contained in array of bytes
+            created with the GetRawData() method. The current signature is overwritten.
+            </summary>
+            <param name="dataArray">Array of bytes containing the raw signature data</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Refresh">
+            <summary>
+            Forces the control to invalidate its client area and redraw itself and any child controls.		
+            </summary>		
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.PromptShowAlways">
+            <summary>
+            Get/Set the visibility of the prompt:
+                true  - Always visble.
+                false - Visible only if no valid signature.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Prompt">
+            <summary>
+            Get/Set the prompt text to be displayed.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.PromptFont">
+            <summary>
+            Get/Set the font to use for the Prompt text
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.PromptLocation">
+            <summary>
+            Get/Set the top-left position of the Prompt text. Use -1 to position automatically.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.HorizLineVisible">
+            <summary>
+            Get/Set the visibility of the horizontal line that indicates where to sign.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.HorizLineLocation">
+            <summary>
+            Get/Set the position of the top-left corner of the horizontal line that indicates where to sign,
+            with respect to the control. Use -1 to position automatically.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.HorizLineSize">
+            <summary>
+            Get/Set the size in pixels of the horizontal line that indicates where to sign. Use -1 to size automatically
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Segments">
+            <summary>
+            Get/Set an ArrayList containing the signature Segments. Each Segment is a Point[]
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.BorderColor">
+            <summary>
+            The color used for the border of the signature pad
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.BorderWidth">
+            <summary>
+            The border width of the control. Set to 0 for no border. Maximum border size if 32.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.PenColor">
+            <summary>
+            The pen color used when drawing the signature.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.PenWidth">
+            <summary>
+            The pen width used when drawing the signature. Valid range is 1 to 20.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.MinSigLength">
+            <summary>
+            The minimum length a signature must have to be considered valid.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.IsValid">
+            <summary>
+            Verifies if the signature is empty so far (no segments over the minimun length)
+             Can be used to validate if signature is valid.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.BackColor">
+            <summary>
+            Background Color (not saved with the image)
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.OverlayAlignment">
+            <summary>
+            Get/Set the alignment for the Overlayed Text to be displayed in the control
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.OverlayText">
+            <summary>
+            Text to be overlayed on the control. For example, time and date.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.ShowOverlayText">
+            <summary>
+            Visibility of the overlay text.
+                true  - Display overlay text (if not empty)
+                false - Hide overlay text.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Font">
+            <summary>
+            Gets or sets the font of the text displayed by the control.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureControl.ForeColor">
+            <summary>
+            Gets or sets the foreground color of the control.
+            </summary>
+        </member>
+        <member name="E:Honeywell.DataCollection.WinCE.Signature.SignatureControl.SignatureUpdate">
+            <summary>
+            Event fired when a new segment has been added to the Signature.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.LOGFONT.structPtr">
+            <summary>
+            Pointer to the UnManaged version of the LOGFONT Struct
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.LOGFONT.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.String)">
+            <summary>
+            Basic Constructor
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.LOGFONT.Finalize">
+            <summary>
+            Destructor: Frees up the allocated UnManaged memory
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.LOGFONT.MarshalToUnManaged">
+            <summary>
+            Fills in the UnManaged version of the Structure
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.LOGFONT.MarshalFromUnManaged">
+            <summary>
+            Extracts data from the Unmanaged buffer to the structure
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureControl.LOGFONT.CalcStructSize">
+            <summary>
+            Calculates size of LOGFONT structure. Take into account memory alignment
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Signature.SignatureControl.IntType">
+            <summary>
+            List of valid file Int types to stream the signature data
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.IntType.INT16">
+            <summary>16 Bit Imager (Intel Format)</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.IntType.INT32">
+            <summary>32 Bit Imager (Intel Format)</summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Signature.SignatureControl.ImgFormat">
+            <summary>
+            List of file formats available when saving the signature image to file.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.ImgFormat.IMG_JPG">
+            <summary>JPEG Lossy Image File Format</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.ImgFormat.IMG_PNG">
+            <summary>PNG Image File Format</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.ImgFormat.IMG_BMP">
+            <summary>Windows Color Bitmap File</summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Alignment">
+            <summary>
+            List of valid text alignment values within the control
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Alignment.TopLeft">
+            <summary>Place Text in the Top Left Corner of the control.</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Alignment.TopCenter">
+            <summary>Place Text in the Top Center of the control.</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Alignment.TopRight">
+            <summary>Place Text in the Upper Right Corner of the control.</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Alignment.BottomLeft">
+            <summary>Place Text in the Bottom Left Corner of the control.</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Alignment.BottomCenter">
+            <summary>Place Text in the Bottom Center of the control.</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureControl.Alignment.BottomRight">
+            <summary>Place Text in the Lower Right Corner of the control.</summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Signature.SignatureException">
+            <summary>
+            Signature Control Exceptions
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SignatureException.SigResultToString(Honeywell.DataCollection.WinCE.Signature.SignatureException.SigResult)">
+            <summary>
+            Convert a SigResult code to a string
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureException.ResultCode">
+            <summary>Result code identifying the cause for the exception. </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Signature.SignatureException.Message">
+            <summary>String message about the exception. </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Signature.SignatureException.SigResult">
+            <summary>
+            Enumeration of results from a call to an SignatureAPI method.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureException.SigResult.sigUninitialized">
+            <summary> Un-Initialized </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureException.SigResult.sigOk">
+            <summary> Success </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureException.SigResult.sigInvalidArgument">
+            <summary> Invalid Argument </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Signature.SignatureException.SigResult.sigMemoryError">
+            <summary> Memory Error </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Signature.SigCapMemory">
+            <summary>
+            Provides simple memory allocation services and string-to-memory copying
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SigCapMemory.AddAlignByte(System.Int32@,System.Int32)">
+            <summary>
+            Adds a byte count to the current size, considering memory alignment
+            </summary>		
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SigCapMemory.AddAlignInt(System.Int32@,System.Int32)">
+            <summary>
+            Adds an integer count to a current size, considering memory alignment
+            </summary>		
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SigCapMemory.AddAlignString(System.Int32@,System.Int32)">
+            <summary>
+            Adds a string length to a current size, considering memory alignment
+            </summary>		
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SigCapMemory.AlignStructSize(System.Int32@)">
+            <summary>
+            Corrects the struct size considering memory alignment
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SigCapMemory.AllocHLocal(System.Int32)">
+            <summary>
+            Allocates a block of memory using LocalAlloc
+            </summary>		
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SigCapMemory.FreeHLocal(System.IntPtr@)">
+            <summary>
+            Frees memory allocated by AllocHLocal
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SigCapMemory.ReAllocHLocal(System.IntPtr,System.Int32)">
+            <summary>
+            Resizes a block of memory previously allocated with AllocHLocal
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SigCapMemory.StringToHLocalUni(System.String)">
+            <summary>
+            Copies the contents of a managed string to a new buffer in unmanaged memory
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SigCapMemory.PumpToBuffer(System.IntPtr@,System.String,System.Int32)">
+            <summary>
+            Pushes the managed string into the unmanaged buffer, considering memory alignment
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Signature.SigCapMemory.PumpFromBuffer(System.IntPtr@,System.String@,System.Int32)">
+            <summary>
+            Pushes the string out from Unmanaged buffer, considering memory alignment
+            </summary>
+        </member>
+    </members>
+</doc>

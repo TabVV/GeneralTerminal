@@ -1,0 +1,1006 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Honeywell.DataCollection.WinCE.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Honeywell.DataCollection.WinCE.Common.IPdtMsgHandler">
+            <summary>
+            Interface for access to MessageWindow from other classes.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Common.WinAPI">
+            <summary>
+            Windows API's used by controls and made available to other assemblies.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.WinAPI.NET_CLASSNAME">
+            <summary>
+            Classname for standard .NET object.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.CreateRectRgn(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Declaration of CreateRectRgn Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.FindWindow(System.String,System.String)">
+            <summary>
+            Declaration of FindWindow Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.GetAsyncKeyState(System.Int32)">
+            <summary>
+            Declaration of GetAsyncKeyState Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.GetClassName(System.IntPtr,System.Char[],System.Int32)">
+            <summary>
+            Declaration of GetClassName Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.GetForegroundWindow">
+            <summary>
+            Declaration of GetForegroundWindow Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.GetKeyState(System.Int32)">
+            <summary>
+            Declaration of GetKeyState Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.GetLastError">
+            <summary>
+            Declaration of GetLastError Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.GetWindow(System.IntPtr,Honeywell.DataCollection.WinCE.Common.WinAPI.GetWindowEnum)">
+            <summary>
+            Declaration of GetWindow Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.GetWindowText(System.IntPtr,System.Char[],System.Int32)">
+            <summary>
+            Declaration of GetWindowText Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.keybd_event(System.Byte,System.Byte,System.Int32,System.IntPtr@)">
+            <summary>
+            Declaration of keybd_event Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.RegisterHotKey(System.IntPtr,Honeywell.DataCollection.WinCE.Common.WinAPI.HotkeyID,Honeywell.DataCollection.WinCE.Common.WinAPI.HotkeyMod,System.Int32)">
+            <summary>
+            Declaration of RegisterHotKey Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.SetForegroundWindow(System.IntPtr)">
+            <summary>
+            Declaration of SetForegroundWindow Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.UnregisterHotKey(System.IntPtr,Honeywell.DataCollection.WinCE.Common.WinAPI.HotkeyID)">
+            <summary>
+            Declaration of UnregisterHotKey Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.CreateProcess(System.String,System.String,System.IntPtr,System.IntPtr,System.Int32,System.Int32,System.IntPtr,System.IntPtr,System.IntPtr,Honeywell.DataCollection.WinCE.Common.WinAPI.ProcessInfo)">
+            <summary>
+            
+            </summary>
+            <param name="imageName">The string must specify the full path and 
+            filename of the module to execute.
+            </param>
+            <param name="cmdLine"></param>
+            <param name="lpThreadAttributes">Not supported; set to NULL.
+            </param>
+            <param name="boolInheritHandles">Not supported; set to NULL.
+            </param>
+            <param name="dwCreationFlags"></param>
+            <param name="lpEnvironment">Not supported; set to NULL.
+            </param>
+            <param name="lpszCurrentDir">Not supported; set to NULL.
+            </param>
+            <param name="si">Not supported; set to NULL.
+            </param>
+            <param name="pi">Pointer to a ProcessInfo structure that 
+            receives identification information about the new process.
+            </param>
+            <returns>Nonzero indicates success. Zero indicates failure.
+            </returns>
+            <remarks>Refer the the Win32 help documentation for more details
+            on setting parameters for the CreateProcess function.
+            </remarks>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.CreateProcess(System.String,System.String)">
+            <summary>
+            Initiates another process specified by the exeName parameter.
+            Uses the Win32 CreateProcess function.
+            </summary>
+            <param name="exeName">Name of the program file to execute.
+            If the filename does not contain an extension, .EXE is assumed. 
+            If the filename ends in a period (.) with no extension, or the filename 
+            contains a path, .EXE is not appended.
+            </param>
+            <param name="cmdLine">Enter any required command line arguments here.
+            </param>
+            <returns>The status of the method call: true indicates success.
+            </returns>
+            <remarks>Refer the the Win32 help documentation for more details
+            on setting parameters for the CreateProcess function.
+            </remarks>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.GetWindowHandle(System.String,System.String)">
+            <summary>
+            Search for and retrieve handle of window matching parameters.
+            </summary>
+            <param name="CLASSNAME">
+            Class of window: this will normally be WinAPI.NET_CLASSNAME.
+            </param>
+            <param name="CONTROL_TITLE">
+            Title of window: normally the Text of the window object.
+            </param>
+            <returns>
+            Window handle matching parameters.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.WinAPI.IsAlreadyRunning(System.String)">
+            <summary>
+            Check to see if Application with specified name is already running.
+            </summary>
+            <param name="windowName">
+            Title of window: normally the Text field of the window object.
+            This call needs to be made before the application starts running.
+            Use caution with this parameter because typically the class associated
+            with the form has not yet been created when this call needs to be made!
+            </param>
+            <returns>
+            The running status of the specified application.
+            </returns>
+            <example>An example using IsAlreadyRunning()
+            <code>
+            if (WinAPI.IsAlreadyRunning("Name_of_Application"))
+            	Application.Exit();
+            else
+            	Application.Run(new formName());
+            </code>
+            </example>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Common.WinAPI.GetWindowEnum">
+            <summary>
+            Enumeration of values used with GetWindow method.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Common.WinAPI.HotkeyMod">
+            <summary>
+            Enumeration of Hotkey modifiers used with RegisterHotKey method.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Common.WinAPI.HotkeyID">
+            <summary>
+            Enumeration of Hotkey identifiers used with RegisterHotKey method.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Common.WinAPI.MsgCmd">
+            <summary>
+            Enumeration of commands used with SendMessage method.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Common.WinAPI.ProcessInfo">
+            <summary>
+            CreateProcess -- Used to instantiate another program
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Common.TaskBar">
+            <summary>
+            Class used to alter the Taskbar state.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.ShowWindow(System.IntPtr,System.Int32)">
+             <summary>
+             This function sets the specified window's show state.
+             </summary>
+             <param name="hWnd">[in] Handle to the window.</param>
+             <param name="type">[in] Specifies how the window is to be shown. this parameter can be one of the 
+             following values.
+             <list type="table">
+             <listheader>
+             <term>Value</term><description>Description</description>
+             </listheader>
+             <item><term>SH_HIDE</term><description>Hides the window and activates another window.</description></item>
+             <item><term>SW_SHOW</term><description>Activates the window and displays it in its current size 
+             and position. </description></item>
+             </list>
+            </param>
+            <returns>Nonzero indicates that the window was previously visible. Zero indicates that the window was 
+            previously hidden. </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.FindWindow(System.String,System.String)">
+            <summary>
+            This function retrieves the handle to the top-level window whose class name and window name match
+            the specified strings. This function does not search child windows.
+            </summary>
+            <param name="lpClass">[in] Long pointer to a null-terminated string that specifies the class name
+            or is an atom that identifies the class-name string.</param>
+            <param name="lpWindow">[in] Long pointer to a null-terminated string that specifies the window
+            name (the window's title). If this parameter is NULL, all window names match.</param>
+            <returns>A handle to the window that has the specified class name and window name indicates 
+            success. NULL indicates failure.</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.SetWindowPos(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt32)">
+            <summary>
+            Declaration of SetWindowPos Win32 API.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.SWP_NOMOVE">
+            <summary>
+            Internal Constants for the Window Flags
+            </summary>      
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.SW_HIDE">
+            <summary>
+            Internal Constants for ShowWindow type
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.SPI_SETWORKAREA">
+             <summary>
+             Internal Constants for SystemParametersInfo
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.SM_CXSCREEN">
+             <summary>
+             Internal Constants for GetSystemMetrics
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.SPIF_SENDCHANGE">
+             <summary>
+             Internal Constants for SystemParameterInfo
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.#ctor">
+            <summary>
+             Constructor
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.Dispose">
+            <summary>
+             Dispose
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.SetApplicationState(System.IntPtr,Honeywell.DataCollection.WinCE.Common.TaskBar.WindowZOrder,System.Int32,System.Int32)">
+             <summary>
+             Changes the ZOrder state of the Application to either hide / show the taskbar.
+             </summary>
+             <param name="hwnd">
+             Handle of the calling application
+             </param>
+             <param name="ZOrder">
+             TaskBar.WindowZorder Enumeration for WindowState
+            </param>
+            <param name="WindowWidth">
+            Width of the window in pixels.
+            </param>
+            <param name="WindowHeight">
+            Height of the Window in pixels.
+            </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.SetTaskBarState(Honeywell.DataCollection.WinCE.Common.TaskBar.TaskBarStates)">
+            <summary>
+            Changes the state of the Taskbar.
+            </summary>
+            <param name="state">
+            TaskBar item to be modified; see TaskBarStates.
+            </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.UpadateWorkArea(System.Boolean)">
+            <summary>
+            Increases / Decreases Device Working Area
+            </summary>
+            <param name="bShowTaskbar">True to Hide the Taskbar.False to Show the Taskbar.</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.GetPlatform">
+            <summary>
+            Return Platform Type
+            </summary>
+            <returns>See Internal Platform Enumeration</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.CheckWinCEPlatform">
+            <summary>
+            Return WinCe Specific Type
+            </summary>
+            <returns>See Internal Platform Enumeration</returns>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Common.TaskBar.WindowZOrder">
+            <summary>
+            WindowZOrder Enumeration for SetWindowState
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.WindowZOrder.NotTopMost">
+            <summary>
+            Places the window above all non-topmost windows (that is, behind all topmost windows). 
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.WindowZOrder.TopMost">
+            <summary>
+            Places the window above all non-topmost windows.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Common.TaskBar.TaskBarStates">
+            <summary>
+            Enumeration of TaskBar settings
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.TaskBarStates.SHFS_SHOWTASKBAR">
+            <summary>
+            Return the taskbar to its topmost state.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.TaskBarStates.SHFS_HIDETASKBAR">
+            <summary>
+            Put the taskbar at the bottom of the z-order. 
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Common.TaskBar.Platform">
+             <summary>
+             Internal Enumeration for Platforms 
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.left">
+            <summary> Upper left X coordinate </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.top">
+            <summary> Upper left Y coordinate </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.right">
+            <summary> Lower right left X coordinate </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.bottom">
+            <summary> Lower right Y coordinate </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.Dispose">
+            <summary>
+             Dispose
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.SetRect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Set All of the Rect's parameters
+            </summary>
+            <param name="left">Left Paramter</param>
+            <param name="top">Top Parameter</param>
+            <param name="right">Right Parameter</param>
+            <param name="bottom">Bottom Parameter</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.GetHeight">
+            <summary>
+            Get Height of Rectangle
+            </summary>
+            <returns>Return the height value</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.GetWidth">
+            <summary>
+            Get Width of Rectangle
+            </summary>
+            <returns>Return the width value</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.GetLeft">
+            <summary>
+            Get Left Coordinate of the Rectangle
+            </summary>
+            <returns>Return the Left Coordinate value</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Common.TaskBar.Rect.GetTop">
+            <summary>
+            Get Top Coordinate of the Rectangle
+            </summary>
+            <returns>Return the Top Coordinate value</returns>
+        </member>
+        <member name="T:Honeywell.PDTDevice.IOCTLDefs">
+            <summary>
+            IOCTL Definitions used by the UtilMethods.
+            </summary>
+        </member>
+        <member name="M:Honeywell.PDTDevice.IOCTLDefs.KernelIoControl(System.UInt32,System.String,System.Int32,System.Char[],System.Int32,System.Int32@)">
+            <summary>
+            Definitions for IOCTL call with Char[] argument.
+            </summary>
+        </member>
+        <member name="M:Honeywell.PDTDevice.IOCTLDefs.KernelIoControl(System.UInt32,System.String,System.Int32,System.Int32@,System.Int32,System.Int32@)">
+            <summary>
+            Definitions for IOCTL call with int argument.
+            </summary>
+        </member>
+        <member name="T:Honeywell.EventNotification.PDTEventType">
+            <summary>
+            Enumeration of PDT event types
+            </summary>
+        </member>
+        <member name="T:Honeywell.EventNotification.PDTEventData">
+            <summary>
+            Data structure that holds the PDT event message.
+            </summary>
+        </member>
+        <member name="M:Honeywell.EventNotification.PDTEventData.#ctor(Honeywell.EventNotification.PDTEventType,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="T:Honeywell.EventNotification.PDTEventArgs">
+            <summary>
+            Specify custom Event arguments to use with the delegate PDTEventHandler.
+            </summary>
+        </member>
+        <member name="F:Honeywell.EventNotification.PDTEventArgs.PDTEventResults">
+            <summary>
+            The PDTEventData results that will be sent with the PDT event.
+            </summary>
+        </member>
+        <member name="M:Honeywell.EventNotification.PDTEventArgs.#ctor(Honeywell.EventNotification.PDTEventData)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="args">
+            The PDTEventData arguments.
+            </param>
+        </member>
+        <member name="T:Honeywell.EventNotification.PDTEventHandler">
+            <summary>
+            PDTEvent event handler delegate for the PDTEvent Control.
+            </summary>
+        </member>
+        <member name="E:Honeywell.EventNotification.EventThread.PDTEvent">
+            <summary>
+            The PDT event handler allows PDT results to be sent as a 
+            notification to any module that registers for this event.
+            </summary>
+        </member>
+        <member name="F:Honeywell.EventNotification.PowerBroadcastTypes.PBT_TRANSITION">
+            <summary> Broadcast specifying system power state transition </summary>
+        </member>
+        <member name="F:Honeywell.EventNotification.PowerBroadcastTypes.PBT_RESUME">
+            <summary> Broadcast notifying a resume, specifies previous state </summary>
+        </member>
+        <member name="F:Honeywell.EventNotification.PowerBroadcastTypes.PBT_POWERSTATUSCHANGE">
+            <summary> Power supply switched to/from AC/DC </summary>
+        </member>
+        <member name="F:Honeywell.EventNotification.PowerBroadcastTypes.PBT_POWERINFOCHANGE">
+            <summary> Some system power status field has changed </summary>
+        </member>
+        <member name="T:Honeywell.EventNotification.MsgQueueData">
+            <summary>
+            Data structure that holds the PDT event message.
+            </summary>
+        </member>
+        <member name="M:Honeywell.EventNotification.MsgQueueData.#ctor(Honeywell.EventNotification.MSGQUEUEOPTIONS,Honeywell.EventNotification.POWER_BROADCAST)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="opt">Message Queue Options structure</param>
+            <param name="pb">Power Broadcast structure</param>
+        </member>
+        <member name="T:Honeywell.EventNotification.MsgQueueEventArgs">
+            <summary>
+            Specify custom Event arguments to use with the delegate MsgQueueEventHandler.
+            </summary>
+        </member>
+        <member name="F:Honeywell.EventNotification.MsgQueueEventArgs.MsgQueueResults">
+            <summary>
+            The MsgQueueData results that will be sent with the MsgQueue event.
+            </summary>
+        </member>
+        <member name="M:Honeywell.EventNotification.MsgQueueEventArgs.#ctor(Honeywell.EventNotification.DeviceEventArgs)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="args">
+            The MsgQueueData arguments.
+            </param>
+        </member>
+        <member name="T:Honeywell.EventNotification.MsgQueueEventHandler">
+            <summary>
+            MsgQueue event handler delegate for the MsgQueue Control.
+            </summary>
+        </member>
+        <member name="E:Honeywell.EventNotification.QueueThread.MsgQueueEvent">
+            <summary>
+            The MsgQueue event handler allows MsgQueue results to be sent as a 
+            notification to any module that registers for the event.
+            </summary>
+        </member>
+        <member name="T:Honeywell.EventNotification.DeviceEventMsg">
+            <summary>
+            Data structure that holds the PDT event message.
+            </summary>
+        </member>
+        <member name="M:Honeywell.EventNotification.DeviceEventMsg.#ctor(Honeywell.EventNotification.PDTEventType,System.String,Honeywell.EventNotification.MsgQueueData)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="t">PDTEventType value</param>
+            <param name="s">Message string</param>
+            <param name="data">MsgQueueData structure</param>
+        </member>
+        <member name="T:Honeywell.EventNotification.DeviceEventArgs">
+            <summary>
+            Specify custom Event arguments to use with the delegate DeviceEventHandler.
+            </summary>
+        </member>
+        <member name="F:Honeywell.EventNotification.DeviceEventArgs.DeviceResults">
+            <summary>
+            The DeviceEventMsg results that will be sent with the decode event.
+            </summary>
+        </member>
+        <member name="M:Honeywell.EventNotification.DeviceEventArgs.#ctor(Honeywell.EventNotification.DeviceEventMsg)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="args">
+            The DeviceEventMsg arguments.
+            </param>
+        </member>
+        <member name="T:Honeywell.EventNotification.DeviceEventHandler">
+            <summary>
+            Device event handler delegate for the NotificationWindow.
+            </summary>
+        </member>
+        <member name="T:Honeywell.EventNotification.NotificationWindow">
+            <summary>
+            This class is a MessageWindow that handles PDT event notifications.
+            </summary>
+        </member>
+        <member name="M:Honeywell.EventNotification.NotificationWindow.StartEventMonitor(Honeywell.EventNotification.PDTEventList)">
+            <summary>
+            Start event monitor to send notifications of PDT events.
+            </summary>
+        </member>
+        <member name="M:Honeywell.EventNotification.NotificationWindow.StopEventMonitor">
+            <summary>
+            Stop event monitor - PDT events will no longer be sent.
+            </summary>
+        </member>
+        <member name="E:Honeywell.EventNotification.NotificationWindow.DeviceEvent">
+            <summary>
+            The device event handler allows PDT system events to be sent as a 
+            notification to any module that registers for the event.
+            </summary>
+        </member>
+        <member name="T:Honeywell.PDTDevice.UtilMethods">
+            <summary>
+            This class provides access to device specific information and hardware.
+            </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.NLED_COUNT_INFO_ID">
+            <summary>
+            LED manipulation
+            
+            Normal use:
+                First, get the count of LED's by calling GetLedCount()
+                Second, if the number of LED's is greater than zero, set the state of each desired LED
+                    by calling SetLedStatus(led #, flag) where the first LED is zero and the flag is defined
+                    by one of the LedFlags enumerations
+            </summary>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.PlaySound(System.String)">
+            <summary>
+            Play a sound on the device's speaker.
+            </summary>
+            <param name="sound">
+            The path to the wave file containing the sound.
+            </param>
+            <returns>
+            The status of the result. True = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.SetLedStatus(Honeywell.PDTDevice.UtilMethods.LedSelect,Honeywell.PDTDevice.UtilMethods.LedFlags)">
+            <summary>
+            Sets the state of the specified LED.
+            </summary>
+            <param name="nLed">The LED being addressed.
+            </param>
+            <param name="state">
+            The state to be applied to the specified LED.</param>
+            <returns>
+            The status of the result. True = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.SuspendSystem">
+            <summary>
+            Set device in suspended state.
+            </summary>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetACLineStatus">
+            <summary>
+            Get the status of the AC Power.
+            </summary>
+            <returns>
+            The status of the result. True = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetBatteryLife">
+            <summary>
+            Get the Battery Life value.
+            </summary>
+            <returns>
+            The percentage of the battery life. 100 = fully charged.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.WarmReset">
+            <summary>
+            Perform a Warm Reset on the device.
+            </summary>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.ColdReboot">
+            <summary>
+            Perform a Cold Reboot on the device.
+            </summary>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.EnablePowerKey(System.Boolean)">
+            <summary>
+            Enable/Disable the Power Key
+            </summary>
+            <param name="enable">
+            Specifies whether to enable or disable the power key.
+            </param>
+            <returns>
+            The status of the result. True = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.EnableSerialPower(System.Boolean)">
+            <summary>
+            Enable/Disable 5V serial power.
+            </summary>
+            <param name="enable">
+            Specifies whether to enable or disable the serial power.
+            </param>
+            <returns>
+            The status of the result.
+             0 indicates successful completion;
+            -1 indicates that the device does not support this function.
+            -2 indicates the COM port could not be opened.
+            -3 indicates that the OS does not support this function.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetDeviceInfo(System.UInt32,System.Int32)">
+            <summary>
+            Get numeric information from device using the specified code parameter.
+            </summary>
+            <param name="code">
+            One of the "HAL_GET_xxx" constants.
+            </param>
+            <param name="a">
+            A reserved value; set to 0.
+            </param>
+            <returns>
+            An integer value that contains the requested information.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetDeviceInfo(System.UInt32)">
+            <summary>
+            Get text information from device using the specified code parameter.
+            </summary>
+            <param name="code">
+            One of the "HAL_GET_xxx" constants.
+            </param>
+            <returns>
+            An string that contains the requested information.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetSerialNumber">
+            <summary>
+            Get Terminal Serial Number from device.
+            </summary>
+            <returns>
+            A string containing the device Serial Number.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetKernelVersion">
+            <summary>
+            Get Kernel Version number from device.
+            </summary>
+            <returns>
+            A string containing the Kernel Version.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetKernelDate">
+            <summary>
+            Get Kernel Date from device.
+            </summary>
+            <returns>
+            A string containing the Kernel Date.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetKernelTime">
+            <summary>
+            Get Kernel Time from device.
+            </summary>
+            <returns>
+            A string containing the Kernel Time.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetBootLoaderVersion">
+            <summary>
+            Get Boot Loader Version number from device.
+            </summary>
+            <returns>
+            A string containing the Boot Loader Version.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetBootLoaderDate">
+            <summary>
+            Get Boot Loader Date from device.
+            </summary>
+            <returns>
+            A string containing the Boot Loader Date.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetBootLoaderTime">
+            <summary>
+            Get Boot Loader Time from device.
+            </summary>
+            <returns>
+            A string containing the Boot Loader Time.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetKeyboardVersion">
+            <summary>
+            Get Keyboard Version number from device.
+            </summary>
+            <returns> 
+            A string containing the Keyboard Version.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetKeyboardType">
+            <summary>
+            Get Keyboard type from device.
+            </summary>
+            <returns>
+            A value containing the Keyboard type.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetScannerType">
+            <summary>
+            Get Scanner Type from device.
+            </summary>
+            <returns>
+            Refer to the ScannerType enumeration.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetHardwareRev">
+            <summary>
+            Get Hardware Revision number from device.
+            </summary>
+            <returns>
+            A value containing the HardwareRev number.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetBatterySerialNumber">
+            <summary>
+            Get Battery serial number from device.
+            </summary>
+            <returns>
+            A value containing the Battery serial number.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetManufacturingDate">
+            <summary>
+            Get Manufacturing Date from device.
+            </summary>
+            <returns>
+            A string containing the Manufacturing Date.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetPartNumber">
+            <summary>
+            Get Manufacturing Part Number from device.
+            </summary>
+            <returns>
+            A string containing the Manufacturing Part Number.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetTouchPanelType">
+            <summary>
+            Get Touch Panel Type from device.
+            </summary>
+            <returns>
+            A value containing the Touch Panel Type.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetSpecialPartNumber">
+            <summary>
+            Get Special Part Number from device.
+            </summary>
+            <returns>
+            A value containing the Special Part Number.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetModelNumber">
+            <summary>
+            Get Manufacturing Model Number from device.
+            </summary>
+            <returns>
+            A value containing the Manufacturing Model Number.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetCPLDVersion">
+            <summary>
+            Get Manufacturing CPLD Version from device.
+            </summary>
+            <returns>
+            A value containing the Manufacturing CPLD Version.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetNumlockKeyState">
+            <summary>
+            Get the state of the Numlock key.
+            </summary>
+            <returns>
+            The state of the Numlock key.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.SetNumlockKeyState(System.Boolean)">
+            <summary>
+            Set the state of the Numlock key.
+            </summary>
+            <param name="state">
+            The state to be applied to the Numlock key.
+            </param>
+            <returns>true - if set correctly, false if not.</returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.GetCapslockKeyState">
+            <summary>
+            Get the state of the Capslock key.
+            </summary>
+            <returns>
+            The state of the Capslock key.
+            </returns>
+        </member>
+        <member name="M:Honeywell.PDTDevice.UtilMethods.SetCapslockKeyState(System.Boolean)">
+            <summary>
+            Set the state of the Capslock key.
+            </summary>
+            <param name="state"></param>
+            <returns>true - if set correctly, false if not.</returns>
+        </member>
+        <member name="T:Honeywell.PDTDevice.UtilMethods.SoundFlags">
+            <summary>
+            PlaySound -- Used to provide audio output
+            </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.SoundFlags.SND_SYNC">
+            <summary> Play synchronously (default) </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.SoundFlags.SND_ASYNC">
+            <summary> Play asynchronously </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.SoundFlags.SND_NODEFAULT">
+            <summary> Silence if sound is not found (default) </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.SoundFlags.SND_MEMORY">
+            <summary> String parameter points to a memory file </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.SoundFlags.SND_LOOP">
+            <summary> Loop the sound until next PlaySound </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.SoundFlags.SND_NOSTOP">
+            <summary> Don't stop any currently playing sound </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.SoundFlags.SND_NOWAIT">
+            <summary> Don't wait if the driver is busy </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.SoundFlags.SND_ALIAS">
+            <summary> Treat string as a registry alias </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.SoundFlags.SND_ALIAS_ID">
+            <summary> Alias is a predefined ID </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.SoundFlags.SND_FILENAME">
+            <summary> Treat string as a filename </summary>
+        </member>
+        <member name="F:Honeywell.PDTDevice.UtilMethods.SoundFlags.SND_RESOURCE">
+            <summary> Treat string as resource name or atom </summary>
+        </member>
+        <member name="T:Honeywell.PDTDevice.UtilMethods.LedFlags">
+            <summary>
+            Enumeration of the available states of the LED's.
+            </summary>
+        </member>
+        <member name="T:Honeywell.PDTDevice.UtilMethods.LedSelect">
+            <summary>
+            Enumeration of the LED's which can be selected.
+            </summary>
+        </member>
+        <member name="T:Honeywell.PDTDevice.UtilMethods.ScannerType">
+            <summary>
+            Enumeration of PDT scanner types.
+            </summary>
+        </member>
+        <member name="T:Honeywell.Logger.Logger">
+            <summary>
+            Logging facility for tracing and recording runtime activity.
+            </summary>
+        </member>
+        <member name="M:Honeywell.Logger.Logger.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logpath">Path of log file to be used.
+            </param>
+        </member>
+        <member name="M:Honeywell.Logger.Logger.Write(System.String)">
+            <summary>
+            Add log entry to log file (concatenates messages).
+            </summary>
+            <param name="message">Message to be logged.
+            </param>
+        </member>
+        <member name="M:Honeywell.Logger.Logger.WriteLine(System.String)">
+            <summary>
+            Add log entry to log file followed by a line terminator.
+            </summary>
+            <param name="message">Message to be logged.
+            </param>
+        </member>
+        <member name="M:Honeywell.Logger.Logger.Flush">
+            <summary>
+            Copy buffered data to log file.
+            </summary>
+        </member>
+        <member name="M:Honeywell.Logger.Logger.Close">
+            <summary>
+            Close log file. Logger must be re-instantiated before logging can resume.
+            </summary>
+        </member>
+        <member name="T:Honeywell.Logger.PDTTrace">
+            <summary>
+            Trace facility for adding log entries to specifed target.
+            </summary>
+        </member>
+        <member name="M:Honeywell.Logger.PDTTrace.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Honeywell.Logger.PDTTrace.Open(System.String)">
+            <summary>
+            Open trace target using specified parameters.
+            </summary>
+            <param name="logpath">Path of log file to be used.
+            </param>
+        </member>
+        <member name="M:Honeywell.Logger.PDTTrace.Write(System.String)">
+            <summary>
+            Send log entry to Logger (concatenates messages).
+            </summary>
+            <param name="message">Message to be logged.
+            </param>
+        </member>
+        <member name="M:Honeywell.Logger.PDTTrace.WriteLine(System.String)">
+            <summary>
+            Send log entry to Logger followed by a line terminator.
+            </summary>
+            <param name="message">Message to be logged.
+            </param>
+        </member>
+        <member name="M:Honeywell.Logger.PDTTrace.Close">
+            <summary>
+            Close the trace paths.
+            </summary>
+        </member>
+    </members>
+</doc>

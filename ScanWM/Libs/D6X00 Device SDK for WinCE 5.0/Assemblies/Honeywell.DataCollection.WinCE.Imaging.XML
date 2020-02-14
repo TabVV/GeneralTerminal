@@ -1,0 +1,1065 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Honeywell.DataCollection.WinCE.Imaging</name>
+    </assembly>
+    <members>
+        <member name="T:Honeywell.DataCollection.Imaging.ImageBase">
+            <summary>
+            Provides .NET interface for PDT Image capture and processing.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.SysColorToDolphin(System.Drawing.Color)">
+            <summary>
+            Convert Color object to GrayScale (0-255)
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.VerifyExtension(System.String,System.String)">
+            <summary>
+            Adds the extension specified to the filename specified if not already there and
+            returns the new string.
+            </summary>
+            <param name="strFilename">Filename whose extension is to be verified</param>
+            <param name="strExt">Extension to add.</param>
+            <returns>Filename with extension.</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.Connect">
+            <summary>
+            Connect to the Imager/Scan Engine.
+            </summary>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.Disconnect">
+            <summary>
+            Disconnect from the Imager/Scan Engine.
+            </summary>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.AdjustBrightness(System.Int32)">
+            <summary>
+            Apply Brightness level to current image.
+            </summary>
+            <param name="brightness">The brightness to be applied to the current image.
+            The range is 0 to 100.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.AdjustContrast(System.Int32)">
+            <summary>
+            Apply Contrast level to current image.
+            </summary>
+            <param name="contrast">The contrast to be applied to the current image.
+            The range is 0 to 100.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.AdjustThreshold(System.Int32)">
+            <summary>
+            Apply Threshold level to current image.
+            </summary>
+            <param name="threshold">The threshold to be applied to the current image.
+            The range is 1 to 255.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.ApplyInfinityFilter">
+            <summary>
+            This filter sharpens the current image by improving focus and contrast
+            and makes any edges in the image sharper.
+            </summary>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.AverageImage">
+            <summary>
+            Apply Average algorithm to current image.
+            </summary>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.ClearImage(System.Drawing.Color)">
+            <summary>
+            Clear current image.
+            </summary>
+            <param name="bkgColor">The color (Color object) to be applied to the background 
+            when the current image is cleared.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.CopyImage(System.IntPtr)">
+            <summary>
+            Copy the source image object into the internal image object.
+            </summary>
+            <param name="hImgSource">A Device Independent Bitmap object to
+            be copied to the internal image object.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.CopyImage(System.IntPtr@,System.IntPtr)">
+            <summary>
+            Copy the source image object into a new image object.
+            </summary>
+            <param name="hImgDest">A Device Independent Bitmap object to
+            receive the source image object.
+            </param>
+            <param name="hImgSource">A Device Independent Bitmap object to
+            be copied to the specified destination image object.</param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.CropImage(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Apply Crop parameters to current image.
+            </summary>
+            <param name="x">The left-most pixel value where the image should start. 
+            </param>
+            <param name="y">The top-most pixel value where the image should start.
+            </param>
+            <param name="width">The width of the image being cropped.
+            </param>
+            <param name="height">The height of the image being cropped.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.DespeckleImage(System.Int32,System.Drawing.Color)">
+            <summary>
+            Apply Despeckle algorithm to current image.
+            </summary>
+            <param name="threshold">The threshold to be applied to the current image.
+            The range is 0 to 8.
+            </param>
+            <param name="bkgColor">The color (Color object) to be applied to the background 
+            when the current image is processed.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.DitherImage(Honeywell.DataCollection.Imaging.DitherMode)">
+            <summary>
+            Apply Dither level to current image.
+            </summary>
+            <param name="ditherMode">The dither mode to be applied to the current image.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.FlipImage(Honeywell.DataCollection.Imaging.FlipMode)">
+            <summary>
+            Flip the current image about specified axis.
+            </summary>
+            <param name="mode">
+            Type of flip: Horizontal or Vertical
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.GetColorDepth">
+            <summary>
+            Get Color Depth parameter for current image.
+            </summary>
+            <returns>
+            The color depth being used.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.GetExposureField(Honeywell.DataCollection.Imaging.ImgExposureField,System.Int32@)">
+            <summary>
+            This function is used to retrieve a specific exposure field that is 
+            used during image acquisition.
+            </summary>
+            <param name="field">Refer to the ImgExposureField enum definition.
+            </param>
+            <param name="val">An integer value that sets the specified field.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.GetImagerType">
+            <summary>
+            This function gets the type of imager being used.
+            </summary>
+            <returns>
+            The imager type, e.g.: IT4000, IT4200
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.GetImageBitCount">
+            <summary>
+            This function gets the bit size of the current image.
+            </summary>
+            <returns>
+            Bit count of current image.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.InvertImage">
+            <summary>
+            Invert the current image.
+            </summary>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.LoadFile(System.String,Honeywell.DataCollection.Imaging.SaveFormat)">
+            <summary>
+            Load file using specified format.
+            </summary>
+            <param name="sFilename">The filename of the file being loaded into the
+            internal image object. If this parameter is empty then the Filename
+            property will be used instead.
+            </param>
+            <param name="fileFormat">The format of the file being loaded.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.OverlayWithBuffer(System.String,Honeywell.DataCollection.Imaging.ImgAlignment,System.Int32,Honeywell.DataCollection.Imaging.RasterOp)">
+            <summary>
+            This function provides for overlaying a text string onto the current image.
+            </summary>
+            <param name="buffer">The text string to be overlaid.
+            </param>
+            <param name="alignment">Where the text string should be displayed.
+            </param>
+            <param name="fontHeight">The height of the desired font.
+            </param>
+            <param name="rasterOp">Refer to RasterOp enum definition.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.OverlayWithTimeDate(Honeywell.DataCollection.Imaging.ImgAlignment,System.Int32,Honeywell.DataCollection.Imaging.RasterOp)">
+            <summary>
+            This function provides for overlaying the time/date onto the current image.
+            </summary>
+            <param name="alignment">Where the text string should be displayed.
+            </param>
+            <param name="fontHeight">The height of the desired font.
+            </param>
+            <param name="rasterOp">Refer to RasterOp enum definition.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.RankFilter(Honeywell.DataCollection.Imaging.FilterRank)">
+            <summary>
+            Set Filter to specified value.
+            </summary>
+            <param name="rank">The rank of the filter being applied to the current
+            image object.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.ResizeImage(System.Int32)">
+            <summary>
+            Resize the current image using specified scale percentage.
+            </summary>
+            <param name="scale">The scale factor being applied to the current image
+            object. The range is 5 to 100.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.SaveFile(System.String,Honeywell.DataCollection.Imaging.SaveFormat,System.Int32)">
+            <summary>
+            Save file using specified format.
+            </summary>
+            <param name="sFilename">The filename of the file being saved from the
+            internal image object. If this parameter is empty then the Filename
+            property will be used instead.
+            </param>
+            <param name="fileFormat">The format of the file being saved.
+            </param>
+            <param name="qualFactor">The image quality factor. The range is 0 to 100. 
+            High quality values produce higher quality images with less compression. 
+            Lower quality values produce smaller image with more image data loss. 
+            This parameter is ignored for BMP and PNG files.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.SetColorDepth(Honeywell.DataCollection.Imaging.ColorDepth)">
+            <summary>
+            Apply Color Depth parameters to current image.
+            </summary>
+            <param name="colorDepth">The color depth to be applied to the current 
+            image object.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.SetExposureField(Honeywell.DataCollection.Imaging.ImgExposureField,System.Int32)">
+            <summary>
+            This function is used to set a specific exposure field that is used 
+            during image acquisition.
+            </summary>
+            <param name="field">Refer to the ImgExposureField enum definition.
+            </param>
+            <param name="val">An integer value that sets the specified field.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.SetImageGammaCorrection(System.Double)">
+            <summary>
+            Sets the level used for Gamma correction on the current image. 
+            The gamma of an image is a measure of its contrast and brightness. 
+            By correcting the gamma, you can adjust these two elements in unison. 
+            Because this command can leave an image looking somewhat flat, you may 
+            want to increase the contrast after you have corrected the gamma.
+            </summary>
+            <param name="gamma">The level to be used for Gamma correction.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.SharpenImage(System.Int32)">
+            <summary>
+            Apply Sharpen algorithm to current image.
+            </summary>
+            <param name="sharpen">The sharpen value to be applied to the current 
+            image object. 
+            The range is 9 to 32.
+            </param>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.StretchHistogram">
+            <summary>
+            Stretch Histogram for current image.
+            If the Histogram does not cover the entire lightness spectrum, the image 
+            does not contain very dark or very light areas; it lacks contrast. 
+            The StretchHistogram command stretches the image closer to both ends 
+            so that it covers more of the spectrum.
+            </summary>
+            <returns>
+            The result of the call to the image engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Imaging.ImageBase.SetHDIBData(System.IntPtr,System.Int32,System.Int32,System.String,System.Byte[])">
+            <summary>
+            SetHDIBData
+            </summary>
+            <param name="hdib"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="sFilename"></param>
+            <param name="pData"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.EnableCapture">
+            <summary>
+            Enable or disable the image capture loop
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ExposureMode">
+            <summary>
+            Get/Set the exposure mode.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.LastErrorCode">
+            <summary>
+            Gets or sets the last imaging error code
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.Aimer">
+            <summary>
+            Turn on and off the device aimer
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.BorderWidth">
+            <summary>
+            Gets or sets the border width
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.Connected">
+            <summary>
+            Gets the status of the connection to the imager.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ConfigFilePath">
+            <summary>
+            Gets or sets the path of the Imaging API configuration file.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.Illumination">
+            <summary>
+            Turn on and off  the device illumination
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ImageHandle">
+            <summary>
+            Gets the handle to the contained Device Independent Bitmap image.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ImageHeight">
+            <summary>
+            Gets the Height of the image.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ImageWidth">
+            <summary>
+            Gets the Width of the image.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ScrollBarHorz">
+            <summary>
+            Gets or sets the Scrollbar horizontal position value.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ScrollBarHorzSmallChange">
+            <summary>
+            Gets the value to be added to or subtracted from the ScrollBarHorz property when the scroll box is moved a small distance.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ScrollBarHorzLargeChange">
+            <summary>
+            Gets or sets a value to be added to or subtracted from the ScrollBarHorz property when the scroll box is moved a large distance.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ScrollBarVert">
+            <summary>
+            Gets or sets the Scrollbar vertical position value.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ScrollBarVertSmallChange">
+            <summary>
+            Gets the value to be added to or subtracted from the ScrollBarVert property when the scroll box is moved a small distance.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ScrollBarVertLargeChange">
+            <summary>
+            Gets or sets a value to be added to or subtracted from the ScrollBarVert property when the scroll box is moved a large distance.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.SizeMode">
+            <summary>
+            Gets or sets the SizeMode of the contained Image.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ScrollBars">
+            <summary>
+            Gets or sets the ScrollBars setting
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.Profile">
+            <summary>
+            Gets or sets the Image Profile name.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.TraceMode">
+            <summary>
+            Gets or sets Trace mode for generating progress log file.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Imaging.ImageBase.ZoomValue">
+            <summary>
+            Gets or sets the zoom percentage for the current image. The range is 1 to 500.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.TriggerKeyEnum">
+            <summary>
+            Assignment of trigger key to initiate scanning or image capture.
+            </summary>
+            <remarks>When comparing the trigger key to the KeyCode parameter in
+            KeyUp or KeyDown events, it must be cast to (Keys): e.g.
+            if (e.KeyCode == (Keys)ctlImage.TriggerKey)
+            </remarks>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.TriggerKeyEnum.TK_NONE">
+            <summary> No trigger key assigned </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.TriggerKeyEnum.TK_ONSCAN">
+            <summary> On\scan key to be used as trigger key </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.TriggerKeyEnum.TK_ENTER">
+            <summary> Enter key to be used as trigger key  </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.CBool">
+            <summary>
+            Enumeration of BOOL type used in "C" interface
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.CBool.False">
+            <summary> False </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.CBool.True">
+            <summary> True </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ScrollBarsEnum.None">
+            <summary> Displays no scroll bars. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ScrollBarsEnum.Auto">
+            <summary> Displays, horizontal, vertical, or both scroll bars as necessary. Otherwise, no scroll bars are shown. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ScrollBarsEnum.Horizontal">
+            <summary> Displays only a horizontal scroll bar. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ScrollBarsEnum.Vertical">
+            <summary> Displays only a vertical scroll bar. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ScrollBarsEnum.Both">
+            <summary> Displays both a horizontal and a vertical scroll bar. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.SizeModeEnum.AutoSize">
+            <summary> The image is drawn as large as possible without clipping, while maintaining the original size ratio. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.SizeModeEnum.CenterImage">
+            <summary> The image is displayed in the center if the control is larger than the image. If the image is larger than the control, the picture is placed in the center of the control and the outside edges are clipped.  </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.SizeModeEnum.Normal">
+            <summary> The image is placed in the upper-left corner of the control. The image is clipped if it is larger than the control it is contained in. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.SizeModeEnum.StretchImage">
+            <summary> The image within the control is stretched or shrunk to fit the size of the control.  </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.SizeModeEnum.Zoom">
+            <summary> The size of the image is increased or decreased maintaining the size ratio. </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.ImgResult">
+            <summary>
+            Enumeration of results from a call to an ImgAPI method.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgOk">
+            <summary> Success </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorMemoryAllocation">
+            <summary> Memory allocation error </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorMemoryFree">
+            <summary> Memory deallocation error </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorFileCreation">
+            <summary> File creation error </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorFileWrite">
+            <summary> File write error </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorInvalidDIB">
+            <summary> Invalid HDIB parameter </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorUnknown">
+            <summary> Unknown error </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorInvalidParm">
+            <summary> Invalid parameter </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorAlreadyInitialized">
+            <summary> Already initialized </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorNotInitialized">
+            <summary> Not initialized </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorDuplicateProfile">
+            <summary> Duplicate profile </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorReadOnlyProfile">
+            <summary> Read-only profile </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorProfileNotFound">
+            <summary> Profile not found </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorInvalidProfile">
+            <summary> Invalid profile </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorAlreadyCapturing">
+            <summary> Already capturing </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorNotCapturing">
+            <summary> Not capturing </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorFileRead">
+            <summary> File read error </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgResult.imgErrorConfigFileRead">
+            <summary> Configuration file read error </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.ImgDebugOut">
+            <summary>
+            The setting for the ImgAPI debug output.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgDebugOut.imgDbgOutNone">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgDebugOut.imgDbgOutPrintf">
+            <summary>
+            Console
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgDebugOut.imgDbgOutLogfile">
+            <summary>
+            Log file
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgDebugOut.imgDbgOutMsgBox">
+            <summary>
+            Message box
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgDebugOut.imgDbgOutDebug">
+            <summary>
+            Kernel debug out
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.ImgPrinterType">
+            <summary>
+            The selection for type of IrDA printer.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgPrinterType.imgPrnOneil">
+            <summary>
+            O’Neil portable printer
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.SaveFormat">
+            <summary>
+            Enumeration of image formats used to save a file.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.SaveFormat.SF_BMP">
+            <summary> Bitmap file format </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.SaveFormat.SF_JPG">
+            <summary> JPEG file format </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.SaveFormat.SF_PNG">
+            <summary> Portable Network Graphics file format </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.SaveFormat.SF_PRN">
+            <summary> Printer output file </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.DitherMode">
+            <summary>
+            The mode to use for the DitherImage method.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.DitherMode.DM_DITHER2">
+            <summary> 1bpp/2 color image </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.DitherMode.DM_DITHER16">
+            <summary> 4bpp/16 color image </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.ColorDepth">
+            <summary>
+            The color depth to be applied for displaying color images.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ColorDepth.COLORS_2">
+            <summary> 1bpp/2 color image </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ColorDepth.COLORS_16">
+            <summary> 4bpp/16 color image </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ColorDepth.COLORS_256">
+            <summary> 8bpp/256 color image </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.FilterRank">
+            <summary>
+            The rank of filter to be applied to the RankFilter method.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.FilterRank.MINIMUM">
+            <summary> Minimum (Erode) </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.FilterRank.MEDIAN">
+            <summary> Median </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.FilterRank.MAXIMUM">
+            <summary> Maximum (Dilate) </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.FlipMode">
+            <summary>
+            The type of operation to be applied when flipping an image.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.FlipMode.HORIZONTAL">
+            <summary> Reflect image about the Horizontal axis. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.FlipMode.VERTICAL">
+            <summary> Reflect image about the Vertical axis. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.FlipMode.LAKE_REFLECT">
+            <summary> Reflect image about the Horizontal axis. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.FlipMode.MIRROR_REFLECT">
+            <summary> Reflect image about the Vertical axis. </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.ImagerTypes">
+            <summary>
+            Enumeration of imager scanner types.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImagerTypes.SCANNER_TYPE_NONE">
+            <summary> No imager hardware </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImagerTypes.SCANNER_TYPE_IT4200">
+            <summary> Hand Held Products IT4200 imager </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImagerTypes.SCANNER_TYPE_SE1200">
+            <summary> Symbol SE1200 non-decoded laser </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImagerTypes.SCANNER_TYPE_SE1223">
+            <summary> Symbol SE1223 decoded laser </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImagerTypes.SCANNER_TYPE_WAYFARER">
+            <summary> Wayfarer RF ID reader</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImagerTypes.SCANNER_TYPE_IT4000">
+            <summary> Hand Held Products IT4000 imager (IC Media mini-imager)</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImagerTypes.SCANNER_TYPE_IT4100">
+            <summary> Hand Held Products IT4100 imager (IC Media mini-imager) Bright Aimer</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImagerTypes.SCANNER_TYPE_IT4300">
+            <summary> Hand Held Products IT4300 imager (IC Media mini-imager) Laser Aimer</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImagerTypes.SCANNER_TYPE_IT5100">
+            <summary> Hand Held Products IT5100 imager Bright Aimer</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImagerTypes.SCANNER_TYPE_IT5300">
+            <summary> Hand Held Products IT5300 imager Laser Aimer</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImagerTypes.SCANNER_TYPE_IS4813">
+            <summary> Hand Held Products IT4200 imager </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.ImgAlignment">
+            <summary>
+            The merge/overlay alignments
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgAlignment.imgAlignTopLeft">
+            <summary> Top left </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgAlignment.imgAlignTopRight">
+            <summary> Top right </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgAlignment.imgAlignBottomRight">
+            <summary> Bottom right </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgAlignment.imgAlignBottomLeft">
+            <summary> Bottom left </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgAlignment.imgAlignTopCenter">
+            <summary> Top center </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgAlignment.imgAlignBottomCenter">
+            <summary> Bottom center </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgAlignment.imgAlignCenter">
+            <summary> Align center </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.ImgSigFormats">
+            <summary>
+            The formats available for saving a signature.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgSigFormats.imgJPG">
+            <summary> JPEG file format </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgSigFormats.imgPNG">
+            <summary> Portable Network Graphics file format </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgSigFormats.imgBMP">
+            <summary> Bitmap file format </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.RasterOp">
+            <summary>
+            Enumeration of Ternary raster operations
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.SRCCOPY">
+            <summary> Destination = Source </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.SRCPAINT">
+            <summary> Destination = Source OR Destination </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.SRCAND">
+            <summary> Destination = Source AND Destination </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.SRCINVERT">
+            <summary> Destination = Source XOR Destination </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.SRCERASE">
+            <summary> Destination = Source AND (NOT Destination) </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.NOTSRCCOPY">
+            <summary> Destination = (NOT Source) </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.NOTSRCERASE">
+            <summary> Destination = (NOT Source) AND (NOT Destination) </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.MERGECOPY">
+            <summary> Destination = (Source AND pattern) </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.MERGEPAINT">
+            <summary> Destination = (NOT Source) OR Destination </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.PATCOPY">
+            <summary> Destination = pattern </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.PATPAINT">
+            <summary> Destination = DPSnoo </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.PATINVERT">
+            <summary> Destination = pattern XOR Destination </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.DSTINVERT">
+            <summary> Destination = (NOT Destination) </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.BLACKNESS">
+            <summary> Destination = BLACK </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.RasterOp.WHITENESS">
+            <summary> Destination = WHITE </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.ImgExposureField">
+            <summary>
+            Enumeration of exposure fields in the ExposureSettings structure.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_EXPOSURE_METHOD">
+            <summary>
+            Type of exposure being selected (See ImgExposureMethod)
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_TARGET_VALUE">
+            <summary>
+            The auto exposure algorithm tries to get a given percentile of all of 
+            the pixel values of the image, to fall at a target value.  This parameter 
+            specifies the desired target value.  The default value for this parameter 
+            is 150, with a minimum of 1 and a maximum of 255.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_TARGET_PERCENTILE">
+            <summary>
+            The auto exposure algorithm tries to get a given percentile of all of the 
+            pixel values of the image, to fall at a certain value.  This parameter sets 
+            where that percentile is in the image data.  This value is configurable 
+            between 1 and 99, where 1 represents the darkest percentile of the image, 
+            and 99 represents the lightest percentile of the image.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_TARGET_ACCEPT_GAP">
+            <summary>
+            This specifies how far the pixel value of the TargetPercentile can stray 
+            from the TargetValue but still be considered an acceptable image. The default 
+            value for this parameter is 10, the minimum value is 1 and the maximum value 
+            is 50. It should be noted however that as this value gets smaller, the time 
+            to acquire a conforming image might be lengthened.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_MAX_EXP">
+            <summary>
+            This specifies the maximum exposure value to be used by the auto exposure 
+            logic during image acquisition. The default value for this parameter is 1312, 
+            the minimum value is 1 and the maximum value is 7874, in units of 127uS. It 
+            should be noted that this parameter would allow for the adjustment of the 
+            frame rate of the imager to achieve larger exposure times; therefore it will 
+            affect the speed at which the imager acquires an image.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_MAX_GAIN">
+            <summary>
+            This specifies the maximum gain value to be used by the auto exposure logic 
+            during image acquisition. The default value for this parameter is 1, the 
+            minimum value is 1 and the maximum value is 4.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_CONFORM_IMAGE">
+            <summary>
+            Where the auto exposure software is always trying to get the TargetPercentile 
+            of pixel data to fall at the TargetValue, this parameter tells the image 
+            acquisition software that the acquired image must conform to the defined 
+            imager settings, (target percentile, target value, number of updates). The 
+            default value for this parameter is 0 for false, indicating that every image 
+            regardless of whether or not the target percentile of pixel values falls within 
+            the acceptance gap of the target value. 
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_CONFORM_TRIES">
+            <summary>
+            This specifies the maximum number of attempts that the auto exposure logic can 
+            use while attempting to acquire an image that conforms to the target values set 
+            up for the auto exposure algorithm, before considering the image as conforming. 
+            This parameter is only valid when the ImageMustConform value is set to 1 or 
+            true.  The default value for this parameter is 6, the minimum value is 1 and 
+            the maximum value is 8.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_SPECULAR_EXCLUSION">
+            <summary>
+            This parameter is no longer used by the image acquisition logic and should be 
+            set to 0.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_SPECULAR_SAT">
+            <summary>
+            This parameter is no longer used by the image acquisition logic and should be 
+            set to 0.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_SPECULAR_LIMIT">
+            <summary>
+            This parameter is no longer used by the image acquisition logic and should be 
+            set to 0.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_FIXED_EXP">
+            <summary>
+            This is the exposure setting when the exposure mode is fixed.  The default 
+            value for this parameter is 255, the minimum value is 1 and the maximum value 
+            is 7874.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_FIXED_GAIN">
+            <summary>
+            This is the gain setting when the exposure mode is fixed.  The default value f
+            or this parameter is 1, the minimum value is 1 and the maximum value is 4.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureField.ES_FIXED_FRAME_RATE">
+            <summary>
+            This is the frame rate setting when the exposure mode is fixed.  The default 
+            value for this parameter is 30, the minimum value is 1 and the maximum value 
+            is 30.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.ImgExposureMode">
+            <summary>
+            Mode of exposure settings.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureMode.SD_EXPOSURE_FIXED">
+            <summary> Fixed exposure mode </summary> 
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureMode.SD_AUTOEXPOSURE_USE_HHP">
+            <summary> Hand Held Products exposure mode (default) </summary> 
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.ImgExposureMethod">
+            <summary>
+            Type of exposure being selected
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureMethod.AE_UNIFORM">
+            <summary> Uses all image data when calculating automatic exposure setting </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureMethod.AE_CENTER_ONLY">
+            <summary> Uses only the data in the center of the image when calculating automatic exposure setting </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgExposureMethod.AE_CENTER_WEIGHTED">
+            <summary> Uses all image data, but weights the data in the center of the image more heavily when calculating automatic exposure setting </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgCaptureType.imgRawFull">
+            <summary> Raw unprocessed full-frame image </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgCaptureType.imgRawPreview">
+            <summary> Raw unprocessed preview image </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgCaptureType.imgFull">
+            <summary> Processed full-frame image </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Imaging.ImgCaptureType.imgPreview">
+            <summary> Processed preview image </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.BITMAPINFOHEADER">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.RGBQUAD">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.BITMAPINFO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Imaging.ImageDefs">
+            <summary>
+            Image Definitions used by the ImageControl.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Imaging.ImageControl">
+            <summary>
+            Summary description for ImageControl.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Imaging.ImageControl.DisplayImage(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Loads the captured IQ Image into the control.
+            </summary>
+        </member>
+        <member name="E:Honeywell.DataCollection.WinCE.Imaging.ImageControl.ImageEvent">
+            <summary>
+            The Image event handler is notified when a full-frame image becomes available
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Imaging.ImageControl.EnableCapture">
+            <summary>
+            Enable or disable the image capture loop
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Imaging.ImageControl.ProfileList">
+            <summary>
+            Compiles and returns a list of profiles from the Imaging API configuration file
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Imaging.ImageControl.TriggerKey">
+            <summary>
+            Get/Set the key to use for the image capture trigger.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Imaging.ImageControl.ImageEventHandler">
+            <summary>
+            Image event handler delegate for the Image Control.
+            </summary>
+        </member>
+    </members>
+</doc>

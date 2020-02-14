@@ -1,0 +1,32 @@
+<project SchemaVersion="1.3">
+    <assemblies>
+        <assembly location="C:\WINCE600\PLATFORM\COMMON\SRC\NID\LIBRARIES\DOTNET_MHL_V3\DOTNET_MHL_V3\bin\Release\DOTNET_MHL_V3.dll" documentation="C:\WINCE600\PLATFORM\COMMON\SRC\NID\LIBRARIES\DOTNET_MHL_V3\DOTNET_MHL_V3\bin\Release\DOTNET_MHL_V3.xml" />
+    </assemblies>
+    <referencePaths>
+        <referencePath path="..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 8\SmartDevices\SDK\CompactFramework\2.0\v2.0\WindowsCE" />
+    </referencePaths>
+    <documenters>
+        <documenter name="XML">
+            <property name="OutputFile" value=".\doc\doc.xml" />
+            <property name="SdkDocVersion" value="SDK_v3_5" />
+            <property name="SdkDocVersionString" value="VS.90" />
+        </documenter>
+        <documenter name="MSDN">
+            <property name="OutputDirectory" value="C:\WINCE600\PLATFORM\COMMON\SRC\NID\LIBRARIES\DOTNET_MHL_V3\DOTNET_MHL_V3\DOCS\" />
+            <property name="HtmlHelpName" value="NordicID_MHL_DotNET_V3_Docs" />
+            <property name="Title" value="Nordic ID C# MHL V3" />
+            <property name="OutputTarget" value="HtmlHelp" />
+            <property name="NamespaceTOCStyle" value="Hierarchical" />
+            <property name="DocumentInheritedMembers" value="False" />
+            <property name="DocumentInheritedFrameworkMembers" value="False" />
+            <property name="AssemblyVersionInfo" value="AssemblyVersion" />
+            <property name="CopyrightText" value="Copyright 2011 Nordic ID" />
+            <property name="CopyrightHref" value="http://www.nordicid.com" />
+            <property name="FeedbackEmailAddress" value="support@nordicid.com" />
+            <property name="AutoDocumentConstructors" value="False" />
+            <property name="SdkDocVersionString" value="VS.80" />
+            <property name="DocumentInheritedAttributes" value="False" />
+            <property name="IncludeDefaultThreadSafety" value="False" />
+        </documenter>
+    </documenters>
+</project>

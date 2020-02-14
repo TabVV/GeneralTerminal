@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Honeywell.WinCE.Network.RadioMgr</name>
+    </assembly>
+    <members>
+        <member name="T:Honeywell.WinCE.Network.RadioMgr.RadioManager">
+            <summary>
+            The RadioManager class is used to configure radio modes on a device. 
+            </summary>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.#ctor">
+            <summary>RadioManager constructor</summary>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.Finalize">
+            <summary>RadioManager finalizer</summary>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.Dispose">
+            <summary>
+            Releases all resources.
+            </summary>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.Dispose(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.HHPSetRFAdapterName(System.String)">
+            <summary>
+            Get the last error code.
+            </summary>
+            <returns>The last error code.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.WLanTurnon(System.Boolean)">
+            <summary>
+            Enable/Disable the 80211 radio.
+            </summary>
+            <param name="bEnable">1 to enable, 0 to disable.</param>
+            <returns>Non-zero if successful, 0 if not.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.RegCloseKey(System.IntPtr)">
+            <summary>
+            Close and open registry key
+            </summary>
+            <param name="hKey">The open key handle.</param>
+            <returns>BOOL TRUE / FALSE.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.RegCreateKeyEx(System.IntPtr,System.String,System.Int32,System.String,System.Int32,System.Int32,System.IntPtr,System.IntPtr@,System.Int32@)">
+            <summary>
+            Open/Create a registry key.
+            </summary>
+            <param name="hKey">base key</param>
+            <param name="lpSubKey">key to create</param>
+            <param name="Reserved">0</param>
+            <param name="lpClass">String.Null</param>
+            <param name="dwOptions">keyRead or keyWrite</param>
+            <param name="samDesired">0</param>
+            <param name="lpSecurityAttributes">IntPtr.Zero</param>
+            <param name="phkResult">IntPtr which is handle to new key.</param>
+            <param name="lpdwDisposition">how key was openened</param>
+            <returns>Non-zero if successful, 0 if failed.</returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.RegSetValueEx(System.IntPtr,System.String,System.Int32,System.Int32,System.Int32@,System.Int32)">
+            <summary>
+            Set the value in the current registry key.
+            </summary>
+            <param name="hKey">IntPtr handle to current key</param>
+            <param name="lpValueName">Name of the value</param>
+            <param name="Res1">0</param>
+            <param name="dwType">type of data (4 for DWORD)</param>
+            <param name="nValue">Int32 or UInt32 value</param>
+            <param name="cbData">sizeof data which is 4 for above</param>
+            <returns>Non-zero if successful, 0 if failed.</returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.CreateEvent(System.IntPtr,System.Int32,System.Int32,System.String)">
+            <summary>
+            Win32 call to create a named event.
+            </summary>
+            <param name="security">Set to IntPtr.Zero</param>
+            <param name="bManualReset">1 for manual reset, 0 for autoreset</param>
+            <param name="bInitialState">1 for set, 0 for reset</param>
+            <param name="eventName">Name of the event</param>
+            <returns>IntPtr which is a handle to the event</returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.BTTurnon(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="hHandle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.CloseHandle(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="hHandle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.Enable80211Radio(System.Boolean)">
+            <summary>
+            Enable/Disable the WiFi Radio.
+            </summary>
+            <param name="bEnable">true to enable, false to disable.</param>
+            <returns>true if successful, false if not. An exception is throw if the underlying Win32
+            code thows an exception.</returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RadioMgr.RadioManager.EnableBluetoothRadio(System.Boolean)">
+            <summary>
+            Enable/Disable the bluetooth radio.
+            </summary>
+            <param name="bEnable">true to enable, false to disable.</param>
+            <returns>true if successful, false if not. An exception is throw if the underlying Win32
+            code thows an exception.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1891 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Honeywell.DataCollection.WinCE.Decoding</name>
+    </assembly>
+    <members>
+        <member name="T:Honeywell.DataCollection.Decoding.DecodeBase">
+            <summary>
+            Summary description for Class1.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeBase.WM_DECODE_EVENT_HWND_MSG">
+            <summary> Unique windows message that will be sent to an application
+            window upon completion of an asynchronous decode attempt.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.Finalize">
+            <summary>
+            Finalizer
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.SetMsgHandler(Honeywell.DataCollection.WinCE.Common.IPdtMsgHandler)">
+            <summary>
+            Set the window for handling notifications
+            </summary>
+            <param name="win"></param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.ExtractWavResources">
+            <summary>Extract embedded Wav file resource and create file if they don't exist on device</summary>
+            <returns>True if successful, False for Failure.</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.SaveLastImage(Honeywell.DataCollection.Decoding.SaveImageFormat)">
+            <summary> Saves the last image stored in the imager to persistant memory (IPSM).</summary>
+            <param name="imageFormat">Enumeration of Image Format types.</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetImageFromBuffer(System.Int32,System.Int32,System.Byte[])">
+            <summary>
+            Creates a Image corresponding with the width, height and image data
+            parameters.
+            </summary>
+            <param name="width">Width of the image within the uchImgData</param>
+            <param name="height">Height of the image within the uchImagData</param>
+            <param name="uchImgData">Byte array of Image data</param>
+            <returns></returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.Connect">
+            <summary> Connect to the scan engine (deprecated). </summary>
+            <remarks>The decode control connects to the scan engine when instantiated and disconnects prior to disposing.  </remarks>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.Disconnect">
+            <summary> Disconnect from the scan engine (deprecated).</summary>
+            <remarks>The decode control connects to the scan engine when instantiated and disconnects prior to disposing.  </remarks>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.EnableSymbology(Honeywell.DataCollection.Decoding.SymID,System.Boolean)">
+            <summary> Enables or disables a single symbology, or all symbologies. </summary>
+            <param name="sym">
+            The symbolgy identifier or the SYM_ALL identifier if all
+            symbologies are to be enabled.
+            </param>
+            <param name="enable">
+            Set to true to enable and false to disable the symbology
+            </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.EnableAimer(System.Boolean)">
+            <summary> Turn on or off the aimer mechanism. </summary>
+            <param name="enable">Whether the aimer should be turned on. </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.SetSymbologyDefaults(Honeywell.DataCollection.Decoding.SymID)">
+            <summary>
+            Sets the symbology decoding parameters to their default values
+            for the specified symbolgy or all symbologies.
+            </summary>
+            <param name="sym"> The identifier of the symbology to be defaulted </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.SetVKWindow(System.Windows.Forms.TextBox)">
+            <summary>
+            Set the window associated with the Virtual Key feature.
+            </summary>
+            <param name="objTextbox">A TextBox object where the virtual key data should be sent.
+            </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.WaitForDecode(System.Int32,System.Byte[],System.Byte@,System.Byte@,System.Byte@,System.Int32@,System.Int32)">
+            <summary>
+            Method used to initiate a decode attempt by the scan engine. This is a blocking method
+            and control will not return to the calling application until a decode has occured,
+            the "timeout" peroid has elapsed or the state of the "key" parameter indicates
+            the key is no longer depressed.
+            </summary>
+            <param name="timeout"> Time in msec's that the scan engine should attempt to decode</param>
+            <param name="message"> Byte array where decode data should be placed</param>
+            <param name="codeID"> Byte variable that will contain the HHP Code ID of the decode data</param>
+            <param name="aimID">Byte variable that will contain the AIM Code ID of the decode data</param>
+            <param name="symModifier">Byte variable that will contain the AIM modifier decode data</param>
+            <param name="length">Length of the returned decode data string</param>
+            <param name="nKey">Key to be monitored while decode attempt is in pgrogess</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetDecoderRevision">
+            <summary>
+            This method may be used to retrieve the decoder library revision information. </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetAPIRevision">
+            <summary> This method may be used to retrieve the decoder API revision information. </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetScanDriverRevision">
+            <summary> This method may be used to retrive the scan driver revision information.</summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetDecodeCenteringWindow(Honeywell.DataCollection.Decoding.SetupType,System.Boolean@,Honeywell.DataCollection.Decoding.Rect)">
+            <summary>
+            This method returns the enabled state and setup information for decode centering mode.
+            In this mode, a decode call is only successful if the area bounding the
+            decoded	symbol intersects a caller defined rectangle located about the
+            center of the captured image.
+            </summary>
+            <param name="setup">SetupType_t that indicates if we are getting the default
+            or current decode centering values
+            </param>
+            <param name="enabled">A reference to a boolean that will reflect the enabled state.
+            </param>
+            <param name="rect">A rectangle object that defines the dimensions of the
+            window.
+            </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetEngineType">
+            <summary> This method may be used to determine the engine type identifier of the installed scan engine. </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.EnableIllumination(System.Boolean)">
+            <summary> Method used to turn on or off the engines illumination LEDs. </summary>
+            <param name="enable">Indicates if the illumination should be turned on or off </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetErrorMessage(Honeywell.DataCollection.Decoding.Result)">
+            <summary>
+            This method returns a string containing the description of the error
+            corresponding to the specified error code. </summary>
+            <param name="error">The Result_t error code. </param>
+            <returns> A string containing the error description. </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetMaxMessageChars">
+            <summary>
+            This method returns the size of the largest possible number of
+            characters, in bytes, that may be returned from the scan engine.
+            </summary>
+            <returns> The maximum message size. </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetEngineID">
+            <summary> This method returns the engine model ID of the installed scan engine. </summary>
+            <returns> The scan engine type. </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.IsSymbologyEnabled(Honeywell.DataCollection.Decoding.SymID)">
+            <summary>
+            Method used to determine if a symbology is enabled for decoding
+            </summary>
+            <param name="symID">Identifier of the symbology to be checked</param>
+            <returns>True if symbol is enabled for decoding, false if not.</returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.SetupOCR(Honeywell.DataCollection.Decoding.OCRMode,System.String,System.String,System.String,System.String)">
+            <summary>
+            This method is used to enable and cofigure OCR decoding options. </summary>
+            <param name="font">Determines which OCR fonts are used for decoding.
+            </param>
+            <param name="template">A string that represents one or more template
+            patterns for the OCR decode. The following characters are allowed:
+            A-Z: capital letters are matched as is.
+            d: a digit from 0 to 9.
+            a: alphanumeric character.
+            l: alphabetic letter.
+            g: any character specified in groupG.
+            h: any character specified in groupH.
+            </param>
+            <param name="groupG">A string that represents a list of characters that
+            can be substituted for the lower case 'g' in the template strings.
+            </param>
+            <param name="groupH">A string that represents a list of characters that
+            can be substituted for the lower case 'h' in the template strings.
+            </param>
+            <param name="checkChar">A null-terminated string that represents a check
+            character position in the template strings.
+            </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetSetupOCR(Honeywell.DataCollection.Decoding.OCRMode@,System.String@,System.String@,System.String@,System.String@)">
+            <summary>
+            This method is used to retrieve OCR decoding options.
+            </summary>
+            <param name="font">Determines which OCR fonts are used for decoding.
+            </param>
+            <param name="template">A null-terminated string that indicates one or more template patterns for the OCR decode. The following characters are allowed:
+            A-Z capital letters are matched as is
+            d - a digit from 0 - 9
+            a - alphanumeric character
+            l - alphabetic letter
+            g - any character specified in group G
+            h - any character specified in group H
+            </param>
+            <param name="groupG">A null-terminated string that represents a list of
+            characters that can be substituted for the lower-case 'g' in the
+            template strings.
+            </param>
+            <param name="groupH">A null-terminated string that represents a list of
+            characters that can be substituted for the lower-case 'h' in the
+            template strings.
+            </param>
+            <param name="checkChar">A null-terminated string that represents a check
+            character position in the template strings.
+            </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.SetupDecodeCenteringWindow(Honeywell.DataCollection.Decoding.SetupType,System.Boolean@,Honeywell.DataCollection.Decoding.Rect)">
+            <summary>
+            This method provides for enabling and configuration of
+            "decode centering mode" during the scanning. In this mode the call
+            to a scan or decode method is only successful if the area bounding
+            the decoded symbol intersects the rectangle bondries defined by this method.
+            </summary>
+            <remarks>
+            This method allows the engine to discriminate between symbols that
+            are located physically close to each other so only one symbol is
+            captured during decode.  Only the symbol intersecting the defined
+            rectangle is returned.
+            </remarks>
+            <param name="setup">
+            Determines if using current or default settings.
+            </param>
+            <param name="enabled">
+            Determines whether centering is enabled or disabled.
+            </param>
+            <param name="rect">
+            A Rect object that defines rectangle coordinates.
+            The ranges of coordinates is as follows:
+            Left:	0-375;
+            Top:	0-239;
+            Right:	376-751;
+            Bottom:	240-479;
+            This rectangular image region must overlap with at least part of the
+            decoded symbol in order to be considered a valid decode.
+            </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetLastDecodeTime">
+            <summary> Get the length of time in msec the last successful decode required.  </summary>
+            <returns> Decode time in msec. </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.Enable2DPQA(System.Boolean)">
+            <summary> This method is used to enable or disable
+            2D print quality assurance output.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetLastImage(System.Int32@,Honeywell.DataCollection.Decoding.LastImageAttributes)">
+            <summary>
+            This method is used to retrieve the last attempted
+            decode image. An Image, the images size, ane the
+            attributes associated with that image are also returned.
+            </summary>
+            <param name="iSize"> Size of the returned Image </param>
+            <param name="LastImgAtt"> LastImageAttributes of the returned Image </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetLastImageSize(System.Int16@,System.Int16@,System.Int32@)">
+            <summary>
+            Get the dimensions of the image used in the last decode attempt.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.ScanInProgress">
+            <summary>
+            Used to determine if the decode engine is currently scanning
+            and attempting to decode.
+            </summary>
+            <returns> True if the decode engine is scanning, false if not. </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.SetExposureSettings(System.Int32[],System.Int32)">
+            <summary>
+            This method is use to set the desired exposure settings
+            </summary>
+            <param name="pArray"></param>
+            <param name="arrayLength"></param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetExposureSettings(System.Int32[],System.Int32)">
+            <summary>
+            This method is used to retrieve the current exposure settings
+            </summary>
+            <param name="pArray"></param>
+            <param name="arrayLength"></param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.SetExposureMode(Honeywell.DataCollection.Decoding.ExposureMode)">
+            <summary>
+            This method is use to set the exposure mode to be
+            used during scanning
+            </summary>
+            <param name="ExpMode"></param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.GetExposureMode">
+            <summary>
+            This method is used to retrieve the current exposure mode
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.AudioMode">
+            <summary>
+            Get/Set the sound device to be used when AutoSounds is enabled.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.AutoSounds">
+            <summary>
+            Get/Set intrinsic Sound handling.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.Connected">
+            <summary>
+            Get the status of the connection to the scan engine.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.ContinuousScan">
+            <summary>
+            Get/Set the status of the ContinuousScan feature.
+            If true the engine will scan continuously until the trigger key is released.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.DecodeAttemptLimit">
+            <summary>
+            Set\get the maximum time in milliseconds that the decoder is allowed
+            to attempt a decode on a symbology in any given image.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMode">
+            <summary>
+            Get/Set the desired decode mode.
+            The three modes are standard, reduced omni-directional
+            and aggressive linear;
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.IqImageData">
+            <summary>Get the the raw IQ image data.</summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.LightsMode">
+             <summary>
+             Get/Set the aimer and illumination lights combination to be used while attempting
+             to read a barcode. The default mode is to alternate the aimer and the illumination
+            
+             </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.LinearRange">
+            <summary>
+            Get/Set the linear range when the aggressive linear decode mode is enabled.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.PrintWeight">
+            <summary>
+            Get/Set the print weight variable to be used by the decoding logic.
+            The valid range is 1-7. A value of 1 indicates the target barcodes are
+            under inked and a value of 7 indicates the target barcodes are
+            over inked.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.ScanTimeout">
+            <summary>
+            Get/Set the timeout value for decode attempts(milliseconds).
+            This is the maximum amount of time the Scan routines are allowed
+            to attempt to decode a barcode
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.SearchTimeLimit">
+            <summary>
+            Set\get the maximum time in milliseconds that the decoder is allowed
+            to search for a possible symbology in any given image.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.TraceMode">
+            <summary>
+            Get/Set trace mode for generating progress log file.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.VideoReverse">
+            <summary>
+            Enable and disable reverse video decoding. When enabled
+            reverse video symbologies, a white barcode on a black
+            background, will be read.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.VirtualKeyMode">
+            <summary>
+            Get/Set Virtual Key mode.
+            This provides for sending the decode data to the window specified by
+            the SetVKWindow method.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.VirtualKeyDest">
+            <summary>
+            Get Virtual Key Destination value.
+            This specifies the window handle associated with the Virtual Key mode
+            and is set by the SetVKWindow method.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.VirtualKeyTerm">
+            <summary>
+            Get/Set the Virtual Key terminator value.
+            This specifies the line terminator to be sent following the decode data.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg">
+            <summary>
+            Data structure that holds the decoded barcode message.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg.rResult">
+            <summary> Result code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg.pchMessage">
+            <summary> Decoded message </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg.chCodeID">
+            <summary> Hand Held Products code ID </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg.chSymLetter">
+            <summary> AIM code ID </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg.chSymModifier">
+            <summary> AIM modifier </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg.nLength">
+            <summary> Decoded Message Length </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg.imgIqImageData">
+            <summary> Intelligent Image </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg.rawData">
+            <summary>Raw Decoded Data</summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg.#ctor(System.String,System.String,System.String,System.String,System.Int32,System.Drawing.Image)">
+            <summary>
+            DecodeMsg Constructor
+            </summary>
+            <param name="msg">Decoded Message Parameter</param>
+            <param name="id">Hand Held Products Code ID Parameter</param>
+            <param name="ltr">AIM Code ID Parameter</param>
+            <param name="mod">AIM Modifier Parameter</param>
+            <param name="len">Decoded Message Length Parameter</param>
+            <param name="img">Intelligent Image Parameter</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg.ClearStruct">
+            <summary> Reinitializes the DecodeMsg Parameters </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg.binaryData">
+            <summary>Returns the raw decoded data.</summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.DecodeBase.DecodeEventArgs">
+            <summary>
+            Specify custom Event arguments to use with the delegate DecodeEventHandler.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeBase.DecodeEventArgs.DecodeResults">
+            <summary>
+            The DecodeMsg results that will be sent with the decode event.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeBase.DecodeEventArgs.#ctor(Honeywell.DataCollection.Decoding.DecodeBase.DecodeMsg)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="args">
+            The DecodeMsg arguments.
+            </param>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.DecodeBase.DecodeEventHandler">
+            <summary>
+            Decode event handler delegate for the Decode Control.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.SaveImageFormat">
+            <summary>
+            Image Format used in SaveLastImage
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.Result">
+            <summary>
+            Results returned from decode functions
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_SUCCESS">
+            <summary> Last operation was successful </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_BADREGION">
+            <summary> IQ image failed </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_DRIVER">
+            <summary> Scan engine driver not responding </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_ENGINEBUSY">
+            <summary> Scan engine busy </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_MEMORY">
+            <summary> Required memory could not be allocated </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_NODECODE">
+            <summary> Last image could not be decoded </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_NOIMAGE">
+            <summary> Image could not be acquired </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_NORESPONSE">
+            <summary> Scan engine did not respond </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_NOTCONNECTED">
+            <summary> Not connected to scan engine </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_PARAMETER">
+            <summary> Invalid input parameter </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_UNSUPPORTED">
+            <summary> Command not supported by engine </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_NOTRIGGER">
+            <summary> Trigger state is false </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_BADSMARTIMAGE">
+            <summary> IQ image fail </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_SMARTIMAGETOOLARGE">
+            <summary> Requested IQ image too large </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_TOO_MUCH_INTERPOLATION">
+            <summary> IQ image fail </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_WRONGRESULTSTRUCT">
+            <summary> Incorrect structure passed in </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_THREAD">
+            <summary> Async decode thread could not be created </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Result.RESULT_ERR_CANCEL">
+            <summary> Async decode canceled by application </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.DecodeMode">
+            <summary>
+            Enumeration of decode modes available during scanning.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeMode.DM_STANDARD">
+            <summary>
+            Standard full omni directional decoding(default)
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeMode.DM_QUICK_OMNI">
+            <summary>
+            Reduced area, quick omni directional decoding
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.DecodeMode.DM_LINEAR_PRIORITY">
+            <summary>
+            Aggressive Linear Decoding
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.ExposureMode">
+            <summary>
+            Enumeration of exposure modes available during image scanning.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureMode.EXP_MODE_FIXED">
+            <summary>
+            Fixed exposure mode
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureMode.EXP_MODE_ONCHIP">
+            <summary>
+            On chip exposure mode
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureMode.EXP_MODE_HHP">
+            <summary>
+            Hand Held Products exposure mode (default)
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.ExposureMethod">
+            <summary>
+            Enumeration of exposure methods available during scanning.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureMethod.EXP_METHOD_UNIFORM">
+            <summary>
+            Uniform exposure using the entire image
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureMethod.EXP_METHOD_CENTER_ONLY">
+            <summary>
+            Exposure based around image center only
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureMethod.EXP_METHOD_CENTER_WEIGHTED">
+            <summary>
+            Exposure weighted toward image center
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.ExposureSettings">
+            <summary>
+            Enumeration of exposure setting parameters that may be modified
+            or retrieved by the SetExposureSettings and GetExposureSettings
+            methods.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_EXPOSURE_METHOD">
+            <summary>
+            The type of exposure method desired
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_TARGET_VALUE">
+            <summary>
+            The auto exposure algorithm tries to get a given percentile of all of 
+            the pixel values of the image, to fall at a target value.  This parameter 
+            specifies the desired target value.  The default value for this parameter 
+            is 150, with a minimum of 1 and a maximum of 255.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_TARGET_PERCENTILE">
+            <summary>
+            The auto exposure algorithm tries to get a given percentile of all of the 
+            pixel values of the image, to fall at a certain value.  This parameter sets 
+            where that percentile is in the image data.  This value is configurable 
+            between 1 and 99, where 1 represents the darkest percentile of the image, 
+            and 99 represents the lightest percentile of the image.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_TARGET_ACCEPT_GAP">
+            <summary>
+            This specifies how far the pixel value of the TargetPercentile can stray 
+            from the TargetValue but still be considered an acceptable image. The default 
+            value for this parameter is 10, the minimum value is 1 and the maximum value 
+            is 50. It should be noted however that as this value gets smaller, the time 
+            to acquire a conforming image might be lengthened.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_MAX_EXP">
+            <summary>
+            This specifies the maximum exposure value to be used by the auto exposure 
+            logic during image acquisition. The default value for this parameter is 1312, 
+            the minimum value is 1 and the maximum value is 7874, in units of 127uS. It 
+            should be noted that this parameter would allow for the adjustment of the 
+            frame rate of the imager to achieve larger exposure times; therefore it will 
+            affect the speed at which the imager acquires an image.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_MAX_GAIN">
+            <summary>
+            This specifies the maximum gain value to be used by the auto exposure logic 
+            during image acquisition. The default value for this parameter is 1, the 
+            minimum value is 1 and the maximum value is 4.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_FRAME_RATE">
+            <summary>
+            This parameter defines the starting frame rate to be used by the auto exposure 
+            logic during image acquisition. The default value for this parameter is 30, 
+            the minimum value is 1 and the maximum value is 30.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_CONFORM_IMAGE">
+            <summary>
+            Where the auto exposure software is always trying to get the TargetPercentile 
+            of pixel data to fall at the TargetValue, this parameter tells the image 
+            acquisition software that the acquired image must conform to the defined 
+            imager settings, (target percentile, target value, number of updates). The 
+            default value for this parameter is 0 for false, indicating that every image 
+            regardless of whether or not the target percentile of pixel values falls within 
+            the acceptance gap of the target value. 
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_CONFORM_TRIES">
+            <summary>
+            This specifies the maximum number of attempts that the auto exposure logic can 
+            use while attempting to acquire an image that conforms to the target values set 
+            up for the auto exposure algorithm, before considering the image as conforming. 
+            This parameter is only valid when the ImageMustConform value is set to 1 or 
+            true.  The default value for this parameter is 6, the minimum value is 1 and 
+            the maximum value is 8.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_SPECULAR_EXCLUSION">
+            <summary>
+            This parameter is no longer used by the image acquisition logic and should be 
+            set to 0.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_SPECULAR_SAT">
+            <summary>
+            This parameter is no longer used by the image acquisition logic and should be 
+            set to 0.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_SPECULAR_LIMIT">
+            <summary>
+            This parameter is no longer used by the image acquisition logic and should be 
+            set to 0.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_FIXED_EXP">
+            <summary>
+            This is the exposure setting when the exposure mode is fixed.  The default 
+            value for this parameter is 255, the minimum value is 1 and the maximum value 
+            is 7874.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_FIXED_GAIN">
+            <summary>
+            This is the gain setting when the exposure mode is fixed.  The default value f
+            or this parameter is 1, the minimum value is 1 and the maximum value is 4.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ExposureSettings.ES_FIXED_FRAME_RATE">
+            <summary>
+            This is the frame rate setting when the exposure mode is fixed.  The default 
+            value for this parameter is 30, the minimum value is 1 and the maximum value 
+            is 30.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.ImageFormat">
+            <summary>
+            Enumeration of image formats used when returning an IQ Image.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ImageFormat.IF_RAW_BINARY">
+            <summary> Raw image will be returned in black and white(binary) format. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ImageFormat.IF_RAW_GRAY">
+            <summary> Raw image will be returned in 8 bit gray scale format. </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.ScanMode">
+            <summary>
+            Enumeration of scan modes used with ScanBarcode method.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ScanMode.SM_DEFAULT">
+            <summary> Scan for standard barcode </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ScanMode.SM_IQIMAGE">
+            <summary> Scan for barcode with IQ Imaging information </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.EngineID">
+            <summary>
+            Enumeration of engine ID's available on all devices.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.UNKNOWN">
+            <summary>
+            Unkown engine type detected </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.NONE">
+            <summary> No engine detected </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.IMAGER_4200_ENGINE">
+            <summary> IT4200 Imager </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.LASER_SE1200_ENGINE">
+            <summary> SE1200 Laser </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.LASER_SE1223_ENGINE">
+            <summary> SE1223 Laser </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.IMAGER_IT4000_ENGINE">
+            <summary> IT4000 Imager </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.IMAGER_IT4100_ENGINE">
+            <summary> IT4100 Imager </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.IMAGER_IT4300_ENGINE">
+            <summary> IT4300 Imager </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.IMAGER_IT5100_ENGINE">
+            <summary> IT5100 Imager </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.IMAGER_IT5300_ENGINE">
+            <summary> IT5300 Imager </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.IMAGER_IT5000_VGA_ENGINE">
+            <summary> IT5000 VGA Imager </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.IMAGER_IT5000_VGA_PSOC_ENGINE">
+            <summary> IT5000 Imager w\PSOC</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineID.LASER_IS4813_ENGINE">
+            <summary> IT4813 Laser </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.EngineType">
+            <summary>
+            Enumeration of engine types available
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineType.ENGINE_TYPE_UNKNOWN">
+            <summary>
+            Engine type could not be determined
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineType.NO_ENGINE_AVAILABLE">
+            <summary>
+            No engine installed or detected
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineType.IMAGER">
+            <summary>
+            Imager engine
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.EngineType.LASER">
+            <summary>
+            Laser engine
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AudioDevice.SND_NONE">
+            <summary> No audio device installed or detected </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AudioDevice.SND_STANDARD">
+            <summary> Standard on board speaker installed </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AudioDevice.SND_FRONT_SPEAKER">
+            <summary> Front mount speaker installed </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AudioDevice.SND_STD_AND_FRONT">
+            <summary> Both standard and front speaker installed </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AudioDevice.SND_BEEPER">
+            <summary> Standard beeper installed </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.VirtualKeyTermEnum">
+            <summary>
+            Enumeration of values used with the VirtualKeyTerm property.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.VirtualKeyTermEnum.VK_NONE">
+            <summary> No virtual key terminator </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.VirtualKeyTermEnum.VK_TAB">
+            <summary> VK terminator is TAB character </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.VirtualKeyTermEnum.VK_ENTER">
+            <summary> VK terminator is ENT character </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.VirtualKeyTermEnum.VK_FOCUSNEXT">
+            <summary> VK terminator is "focus next" character </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.VirtualKeyTermEnum.VK_FOCUSPREV">
+            <summary> VK terminator is "focus previous" character </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.SetupType">
+            <summary>
+            Enumeration of Setup types used with configuration functions.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SetupType.ST_DEFAULT">
+            <summary> Use the parameters default values for pending operation </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SetupType.ST_CURRENT">
+            <summary> Use the passed or current values for pending operation </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.CBool.False">
+            <summary> False </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.CBool.True">
+            <summary> True </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.ScanLightsMode">
+            <summary>
+            Enumeration of modes of aimer and illumination that can used during scanning.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ScanLightsMode.LM_ILLUM_AIMER_OFF">
+            <summary> No aimer or illumination used during scanning </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ScanLightsMode.LM_AIMER_ONLY">
+            <summary> Aimer only used during scanning </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ScanLightsMode.LM_ILLUM_ONLY">
+            <summary> Illumination only only during scanning </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ScanLightsMode.LM_ILLUM_AIMER">
+            <summary> Both aimer and illumination used during scanning (default) </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.ImagerPropertiesStruct">
+            <summary>
+            I created a imager properties struct for retrieving the
+            imager properties for two reasons. First, it's easier to
+            marshall the pointer to the strcuture and second we don't
+            want to expose all of the imager properties so by exposing
+            them to an app via the class we can hide what we don't
+            want them to see but still have them available in the struct
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.IntellImgDesc">
+            <summary>
+            Definition of values used for IQ Image descriptors.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.IntellImgDesc.aspectRatio">
+            <summary>
+            Ratio of barcode height to narrow elem width
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.IntellImgDesc.offsetX">
+            <summary>
+            Offset in X direction, relative to barcode center
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.IntellImgDesc.offsetY">
+            <summary>
+            Offset in Y direction
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.IntellImgDesc.width">
+            <summary>
+            Width of image in IntellBarcodeUnits;
+            Must be a multiple of 4, otherwise the control will force it to a
+            multiple of 4 for display compatibility.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.IntellImgDesc.height">
+            <summary>
+            Height of image in IntellBarcodeUnits
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.IntellImgDesc.resolution">
+            <summary>
+            # pixels/IntellBarcodeUnits
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.IntellImgDesc.format">
+            <summary>
+            See FileFormat description
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.IntellImgDesc.#ctor">
+            <summary>
+            Constructor with members to be defined later.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.IntellImgDesc.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor with parameters to initialize members.
+            </summary>
+            <param name="aspect">Aspect Ratio</param>
+            <param name="x">X-offset</param>
+            <param name="y">Y-offset</param>
+            <param name="w">Width</param>
+            <param name="h">Height</param>
+            <param name="res">Resolution</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.IntellImgDesc.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Honeywell.DataCollection.Decoding.ImageFormat)">
+            <summary>
+            Constructor with parameters to initialize members.
+            </summary>
+            <param name="aspect">Aspect Ratio</param>
+            <param name="x">X-offset</param>
+            <param name="y">Y-offset</param>
+            <param name="w">Width</param>
+            <param name="h">Height</param>
+            <param name="res">Resolution</param>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.Rect">
+            <summary>
+            Class that defines a rectangle.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Rect.left">
+            <summary> Upper left X coordinate </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Rect.top">
+            <summary> Upper left Y coordinate </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Rect.right">
+            <summary> Lower right left X coordinate </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.Rect.bottom">
+            <summary> Lower right Y coordinate </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.Rect.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.Rect.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.ImagerProperties">
+            <summary>
+            Class that defines the properties of the installed
+            scan engine.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ImagerProperties.EngineID">
+            <summary> Engine ID of the installed scan engine\imager  </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ImagerProperties.NumberRows">
+            <summary> Number of imager rows </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ImagerProperties.NumberCols">
+            <summary> Number of imager columns </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ImagerProperties.BitsPerPixel">
+            <summary> Number of bits in each pixel </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ImagerProperties.Rotation">
+            <summary> Reflects orientation of scan engine </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.ImagerProperties.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.LastImageAttributes">
+            <summary>
+            Class that defines the attributes of the last image a decode
+            attempt was performed on.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.LastImageAttributes.Size">
+            <summary> Size of last image </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.LastImageAttributes.Exposure">
+            <summary> Exposure value </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.LastImageAttributes.Gain">
+            <summary> Gain value </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.LastImageAttributes.IllumValue">
+            <summary> Illumination value </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.LastImageAttributes.IllumMax">
+            <summary> Maximum illumination value </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.LastImageAttributes.IllumClip">
+            <summary> Illumination clip value  </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.LastImageAttributes.#ctor">
+            <summary> Constructor </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.DecodeDefs">
+            <summary>
+            Decode Definitions used by the DecodeControl.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.SendKeys">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.SendKeys.keybd_event(System.Byte,System.Byte,System.Int32,System.IntPtr@)">
+            <summary>
+            Declaration of keybd_event Win32 API.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.SendKeys.GetKeyState(System.Int32)">
+            <summary>
+            Declaration of GetKeyState Win32 API.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Decoding.TriggerKeyEnum">
+            <summary>
+            Assignment of trigger key to initiate scanning or image capture.
+            </summary>
+            <remarks>When comparing the trigger key to the KeyCode parameter in
+            KeyUp or KeyDown events, it must be cast to (Keys): e.g.
+            if (e.KeyCode == (Keys)ctlImage.TriggerKey)
+            </remarks>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Decoding.TriggerKeyEnum.TK_NONE">
+            <summary> No trigger key assinged </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Decoding.TriggerKeyEnum.TK_ONSCAN">
+            <summary> On\scan key to be used as trigger key </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.WinCE.Decoding.TriggerKeyEnum.TK_ENTER">
+            <summary> Enter key to be used as trigger key </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.WinCE.Decoding.DecodeControl">
+            <summary>
+            Summary description for Class1.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.Dispose(System.Boolean)">
+            <summary>
+            Dispose method to release resources.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.ProcessDecodeResult(Honeywell.DataCollection.Decoding.Result)">
+            <summary>
+            Process the results from the AsyncDecode.
+            </summary>
+            <param name="result">Result from decGetAsyncDecodeResult.</param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.SendMessage(System.IntPtr,System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            Send message to window control.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.ClearMemberVariables">
+            <summary>
+            This will Clear decode specific member variables to ensure data integrity for 
+            each decode.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.CancelScanBarcode">
+            <summary>
+            Used to cancel a the ScanBarcode attempt
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.TriggerKeyIsDown">
+            <summary>
+            Return the current state of the Trigger key.
+            </summary>
+            <returns>
+            The status of the method; true = key is down.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.CaptureIQImage(Honeywell.DataCollection.Decoding.IntellImgDesc)">
+            <summary>
+            Scan for a barcode with encoded(IQ) image information.
+            </summary>
+            <param name="imgDesc">An IQ Image Descriptor object.
+            </param>
+            <returns>
+            The result of the call to the scan engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.GetIQImage(Honeywell.DataCollection.Decoding.IntellImgDesc)">
+            <summary>
+            Get an image of an encoded(IQ)image.
+            </summary>
+            <param name="imgDesc">An IQ Image Descriptor object.
+            </param>
+            <returns>
+            The IQ image.
+            </returns>
+            
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.ScanBarcode">
+            <summary>
+            Scan for a standard barcode.
+            </summary>
+            <returns>
+            The result of the call to the scan engine.
+            </returns>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.ScanBarcode(System.Boolean)">
+            <summary>
+            Scan for a standard barcode.
+            </summary>
+            <param name="bNonBlocking">
+            Boolean value: 
+            True to preform a asynchronous scan, 
+            False to preform a blocking scan.
+            </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.Clear">
+            <summary>
+            Clears the Text of the Decode Control.
+            </summary>
+        </member>
+        <member name="E:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.DecodeEvent">
+            <summary>
+            The Decode event handler allows decode results to be sent as a
+            notification to any module that registers for the event.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.AimerTimeout">
+            <summary>
+            Get/Set the timer that determines how long the Aimer will stay on
+            (milliseconds).
+            A value of 0 disables the timer.
+            A value of -1 specifies that the Aimer will stay on until the
+            completion of a call to the ScanBarcode method.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.AutoLEDs">
+            <summary>
+            Get/Set intrinsic LED handling.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.AimIDDisplay">
+            <summary>
+            Include the AimID in the control display.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.CodeIDDisplay">
+            <summary>
+            Include the CodeID in the control display.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.ModifierDisplay">
+            <summary>
+            Include the Modifier in the control display.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.TriggerKey">
+            <summary>
+            Get/Set the key to use for the scan Trigger.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.WinCE.Decoding.DecodeControl.AutoScan">
+            <summary>
+            Get/Set the AutoScan feature which allows for automatically initiating
+            a barcode scan when the trigger key is pressed.
+            If this property is set true, it captures the Trigger Key and
+            dedicates it to the Decode Control until it is set false again.
+            </summary>
+            <remarks>
+            The use of this property is limited to one Decode Control at a time.
+            If any other application or form has already registered the Trigger
+            Key, an exception will be generated at the time this property is set
+            which may be when the control is instantiated (see the example code).
+            </remarks>
+            <exception cref="T:System.ApplicationException">
+            "HotKey already registered".
+            </exception>
+            <example>
+            If visual AutoScan property is set true, it is recommended that the
+            following exception checking logic be added to detect the case where
+            the Trigger Key is already reserved.
+            <code>
+            try
+            {
+            	InitializeComponent();
+            }
+            catch(ApplicationException e)
+            {
+            	MessageBox.Show(e.Message, "Application Exception");
+            	Application.Exit();
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.SymID">
+            <summary> Symbology identifier used when configuring decoding and symbology options. </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_AZTEC">
+            <summary> Aztec Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_CODABAR">
+            <summary> Codabar </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_CODE11">
+            <summary> Code 11 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_CODE128">
+            <summary> Code 128 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_CODE39">
+            <summary> Code 39 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_CODE49">
+            <summary> Code 49 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_CODE93">
+            <summary> Code 93</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_COMPOSITE">
+            <summary> EAN UCC Composite Symbology </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_DATAMATRIX">
+            <summary> Data Matrix </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_EAN8">
+            <summary> EAN-8 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_EAN13">
+            <summary> EAM-13(including Booklans EAN)</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_INT25">
+            <summary> Interleaved 2 of 5 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_MAXICODE">
+            <summary> MaxiCode </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_MICROPDF">
+            <summary> MicroPDF417 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_OCR">
+            <summary> OCR </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_PDF417">
+            <summary> PDF417 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_POSTNET">
+            <summary> Postnet </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_QR">
+            <summary> QR Code and Micro QR Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_RSS">
+            <summary> Reduced Space Symbology </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_UPCA">
+            <summary> UPC-A </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_UPCE0">
+            <summary> UPC-E0 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_UPCE1">
+            <summary> UPC-E1 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_ISBT">
+            <summary> ISBT 128 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_BPO">
+            <summary> British Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_CANPOST">
+            <summary> Canadian Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_AUSPOST">
+            <summary> Australian Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_IATA25">
+            <summary> Straight 2 of 5 IATA </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_CODABLOCK">
+            <summary> Codablock F </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_JAPOST">
+            <summary> Japanese Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_PLANET">
+            <summary> Planet Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_DUTCHPOST">
+            <summary> KIX (Netherlands) Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_MSI">
+            <summary> MSI Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_TLCODE39">
+            <summary> TCIF Linked Code 39 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_TRIOPTIC">
+            <summary> Trioptic Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_CODE32">
+            <summary> Code 32 Pharmaceutical (PARAF) </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_STRT25">
+            <summary> Straight 2 of 5 (Industrial) </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_MATRIX25">
+            <summary> Matrix 2 of 5 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_PLESSEY">
+            <summary> Plessey Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_CHINAPOST">
+            <summary> China Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_KOREAPOST">
+            <summary> Korea Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_TELEPEN">
+            <summary> Telepen </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_CODE16K">
+            <summary> Code 16K </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_POSICODE">
+            <summary> PosiCode </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_COUPONCODE">
+            <summary> EAN-13 with Extended Coupon Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_USPS4CB">
+            <summary> USPS 4 State </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_IDTAG">
+            <summary> UPU 4-State ID-Tag </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_LABEL">
+            <summary> LabelCode 4 and 5 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.NUM_SYMBOLOGIES">
+            <summary> Number of symbologies supported </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymID.SYM_ALL">
+            <summary> For configuring all symbologies </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.AimChar">
+            <summary> AIM Symbology Identifiers </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_AZTEC">
+            <summary>  AIM Symbology ID for Aztec code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_CODABAR">
+            <summary>  AIM Symbology ID for Codabar </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_CODE11">
+            <summary>  AIM Symbology ID for Code 11 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_CODE128">
+            <summary>  AIM Symbology ID for Code 128 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_CODE39">
+            <summary>  AIM Symbology ID for Code 39 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_CODE49">
+            <summary>  AIM Symbology ID for Code 49 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_CODE93">
+            <summary>  AIM Symbology ID for Code 93 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_COMPOSITE">
+            <summary>  AIM Symbology ID EAN UCC Composite Symbology </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_DATAMATRIX">
+            <summary>  AIM Symbology ID for Data Matrix </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_EAN">
+            <summary>  AIM Symbology ID for EAN-8 and EAN-13 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_INT25">
+            <summary>  AIM Symbology ID for Interleaved 2of5</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_MAXICODE">
+            <summary>  AIM Symbology ID for MaxiCode </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_MICROPDF">
+            <summary>  AIM Symbology ID for MicroPDF417 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_PDF417">
+            <summary>  AIM Symbology ID for PDF417 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_OCR">
+            <summary>  AIM Symbology ID for OCR </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_QR">
+            <summary>  AIM Symbology ID for QR Code and Micro QR Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_RSS">
+            <summary>  AIM Symbology ID for Reduced Space Symbology</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_UPC">
+            <summary>  AIM Symbology ID for UPC-E</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_POSTNET">
+            <summary>  AIM Symbology ID for Postnet</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_ISBT">
+            <summary>  AIM Symbology ID for Code 128 ISBT 128</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_BPO">
+            <summary>  AIM Symbology ID for British Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_CANPOST">
+            <summary>  AIM Symbology ID for Canadian Post</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_AUSPOST">
+            <summary>  AIM Symbology ID for Australian Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_IATA25">
+            <summary>  AIM Symbology ID for Straight 2 of 5 IATA </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_CODABLOCK">
+            <summary>  AIM Symbology ID for Codablock F </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_JAPOST">
+            <summary>  AIM Symbology ID for Japanese Post</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_PLANET">
+            <summary>  AIM Symbology ID for Planet Code</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_DUTCHPOST">
+            <summary>  AIM Symbology ID for KIX (Netherlands) Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_MSI">
+            <summary>  AIM Symbology ID for MSI</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_TLC39">
+            <summary>  AIM Symbology ID for TCIF Linked Code 39(TLC39)</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_MATRIX25">
+            <summary>  AIM Symbology ID for Matrix 2 of 5 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_KORPOST">
+            <summary>  AIM Symbology ID for Korea Post</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_TRIOPTIC">
+            <summary>  AIM Symbology ID for Trioptic Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_CODE32">
+            <summary>  AIM Symbology ID for Code 32 Pharamaceutical (PARAF)</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_STRT25">
+            <summary>  AIM Symbology ID for Straight 2of5 Industrial</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_PLESSEY">
+            <summary>  AIM Symbology ID for Plessey Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_CHINAPOST">
+            <summary>  AIM Symbology ID for China Post</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_TELEPEN">
+            <summary>  AIM Symbology ID for Telepen</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_CODE16K">
+            <summary>  AIM Symbology ID for Code 16K </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_POSICODE">
+            <summary>  AIM Symbology ID for PosiCode </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_COUPONCODE">
+            <summary>  AIM Symbology ID for EAN-13 with Extended Coupon Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.AimChar.AIMID_LABEL">
+            <summary>  AIM Symbology ID for Label Code 4 and 5 </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.SymChar">
+            <summary> Hand Held Products Symbology Identifiers </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_AZTEC">
+            <summary>  HHP Symbology ID for Aztec code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_CODABAR">
+            <summary>  HHP Symbology ID for Codabar </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_CODE11">
+            <summary>  HHP Symbology ID for Code 11 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_CODE128">
+            <summary>  HHP Symbology ID for Code 128 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_CODE39">
+            <summary>  HHP Symbology ID for Code 39 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_CODE49">
+            <summary>  HHP Symbology ID for Code 49 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_CODE93">
+            <summary>  HHP Symbology ID for Code 93 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_COMPOSITE">
+            <summary>  HHP Symbology ID for ID EAN UCC Composite Symbology </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_DATAMATRIX">
+            <summary>  HHP Symbology ID for Data Matrix </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_EAN">
+            <summary>  HHP Symbology ID for EAN-8 and EAN-13 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_INT25">
+            <summary>  HHP Symbology ID for Interleaved 2 of 5 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_MAXICODE">
+            <summary>  HHP Symbology ID for MaxiCode </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_MICROPDF">
+            <summary>  HHP Symbology ID for MicroPDF417 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_PDF417">
+            <summary>  HHP Symbology ID for PDF417 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_POSTNET">
+            <summary>  HHP Symbology ID for Postnet </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_OCR">
+            <summary>  HHP Symbology ID for OCR </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_QR">
+            <summary>  HHP Symbology ID for QR Code and Micro QR Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_RSS">
+            <summary>  HHP Symbology ID for Reduced Space Symbology </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_UPC">
+            <summary>  HHP Symbology ID for UPC-A </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_ISBT">
+            <summary>  HHP Symbology ID for ISBT 128 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_BPO">
+            <summary>  HHP Symbology ID for British Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_CANPOST">
+            <summary>  HHP Symbology ID for Canadian Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_AUSPOST">
+            <summary>  HHP Symbology ID for Australian Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_IATA25">
+            <summary>  HHP Symbology ID for Straight 2 of 5 IATA </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_CODABLOCK">
+            <summary>  HHP Symbology ID for Codablock F </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_JAPOST">
+            <summary>  HHP Symbology ID for Japanese Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_PLANET">
+            <summary>  HHP Symbology ID for Planet Code</summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_DUTCHPOST">
+            <summary>  HHP Symbology ID for KIX (Netherlands) Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_MSI">
+            <summary>  HHP Symbology ID for MSI </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_TLC39">
+            <summary>  HHP Symbology ID for TCIF Linked Code 39(TLC39) </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_MATRIX25">
+            <summary>  HHP Symbology ID for Matrix 2 of 5 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_KORPOST">
+            <summary>  HHP Symbology ID for Korea Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_TRIOPTIC">
+            <summary>  HHP Symbology ID for Trioptic Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_CODE32">
+            <summary>  HHP Symbology ID for Code 32 Pharamaceutical (PARAF) </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_STRT25">
+            <summary>  HHP Symbology ID for Straight 2of5 Industrial </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_PLESSEY">
+            <summary>  HHP Symbology ID for Plessey Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_CHINAPOST">
+            <summary>  HHP Symbology ID for China Post </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_TELEPEN">
+            <summary>  HHP Symbology ID for Telepen </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_CODE16K">
+            <summary>  HHP Symbology ID for Code 16K </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_POSICODE">
+            <summary>  HHP Symbology ID for Posicode </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_COUPONCODE">
+            <summary>  HHP Symbology ID for EAN-13 with Extended Coupon Code </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_LABELIV">
+            <summary>  HHP Symbology ID for Label Code 4 </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymChar.SYSYMID_LABELV">
+            <summary>  HHP Symbology ID for Label Code 5 </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.ConfigType">
+            <summary>
+            Enum that defines the type of SymbologyConfig object for a given symbology
+            Symbologies that do not have a length parameter associated with them like
+            UPC and EAN will of of type FLAGS_ONLY. Symbologies that have a length
+            parameter like Code 39 or Aztec Code will be of type FLAGS_RANGE.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ConfigType.FLAGS_ONLY">
+            <summary> 
+            Indicates the symbology config object does not have 
+            or support a length property.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.ConfigType.FLAGS_AND_LENGTH">
+            <summary> 
+            Indicates the symbology config object does have 
+            and supports min and max length property.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.SymFlags">
+            <summary>
+            The SymFlags are bitwise field operators that when used in conjuntion with the
+            SYM_MASK field are used to enable and disable various symbology options.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_ENABLE">
+            <summary> General use symbology enable bit </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_CHECK_ENABLE">
+            <summary> Enable usage of check character </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_CHECK_TRANSMIT">
+            <summary> Include check character in decode result string </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_START_STOP_XMIT">
+            <summary> Include the start and stop characters in decode result string </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_ENABLE_APPEND_MODE">
+            <summary> Enable Code 39 append mode </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_ENABLE_FULLASCII">
+            <summary> Enable Code39 Full ASCII mode </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_NUM_SYS_TRANSMIT">
+            <summary> Include the UPC-A/UPC-E Number System characters in decod result string  </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_2_DIGIT_ADDENDA">
+            <summary> Enable 2 digit Addenda for UPC and EAN codes </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_5_DIGIT_ADDENDA">
+            <summary> Enable 5 digit Addenda for UPC and EAN codes </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_ADDENDA_REQUIRED">
+            <summary> Only read UPC and EAN codes with addenda </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_ADDENDA_SEPARATOR">
+            <summary> Include addenda separator space in return string </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_EXPANDED_UPCE">
+            <summary> Enable symbology bit </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_UPCE1_ENABLE">
+            <summary> Enable UPCE1 symbology bit </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_COMPOSITE_UPC">
+            <summary> Enable UPC Composite  codes </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_AZTEC_RUNE">
+            <summary> Enable Aztec Code Runes </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_AUSTRALIAN_BAR_WIDTH">
+            <summary> Include australian postal bar data in string </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_RSE_ENABLE">
+            <summary> Enable RSS Expanded bit </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_RSL_ENABLE">
+            <summary> Enable RSS Limited bit </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_RSS_ENABLE">
+            <summary> Enable RSS 14 bit </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_RSX_ENABLE_MASK">
+            <summary> Enable all RSS symbologies bits </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_TELEPEN_OLD_STYLE">
+            <summary> Telepen "old Style" enable bit </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_POSICODE_LIMITED_1">
+            <summary> PosiCode Limited of 1 enable bit </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_POSICODE_LIMITED_2">
+            <summary> PosiCode Limited of 2 enable bit </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.SymFlags.SYMBOLOGY_CODABAR_CONCATENATE">
+            <summary> Enable concatenation of Codabar syymbols </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.BitMask">
+            <summary>
+            The BitMask is used to determine which members in a symbology
+            configuration class are valid and therefore to  be used
+            to set or get symbology configuration settings. 
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.BitMask.FLAGS">
+            <summary>
+            Indicates the "flags" field is valid and should be used
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.BitMask.MIN_LEN">
+            <summary>
+            Indicates the minimum length field is valid and should be used
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.BitMask.MAX_LEN">
+            <summary>
+            Indicates the minimum field is valid and should be used
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.BitMask.ALL">
+            <summary>
+            Indicates all structure fields are valid and should be used
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.OCRMode">
+            <summary>
+            Enumeration of OCR Fonts used with SetupOCR method.
+            </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.OCRMode.OCR_DISABLED">
+            <summary> Used to disbled all OCR decoding </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.OCRMode.OCR_A">
+            <summary> Used to enabled OCR-A font decoding </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.OCRMode.OCR_B">
+            <summary> Used to enabled OCR-B font decoding </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.OCRMode.OCR_MONEY">
+            <summary> Used to enabled OCR-Money font decoding </summary>
+        </member>
+        <member name="F:Honeywell.DataCollection.Decoding.OCRMode.OCR_MICR_UNSUPPORTED">
+            <summary> Unsupported </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.SymbologyConfig">
+            <summary>
+            Class used to configure symbologies that have both flags and 
+            a Minimum and Maximum length parameter associated with them.
+            This class would be used to configure symbologies like Code 39,
+            PDF417, Aztec Code etc.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.SymbologyConfig.#ctor(Honeywell.DataCollection.Decoding.SymID)">
+            <summary> Class used to configure symbologies. </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.SymbologyConfig.ReadConfig(Honeywell.DataCollection.Decoding.SetupType)">
+            <summary>
+            Read the symbologies decode properties from the scan engine. 
+            Only the properties specified by the mask property are updated.
+            </summary>
+            <param name="setType"></param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.SymbologyConfig.WriteConfig">
+            <summary>
+            Write the symbology decode properties to the scan engine. 
+            Only the properties specified by the mask are written.
+            Min and Max length properties are ignored if the symbology config
+            object is FLAGS_ONLY.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.SymbologyConfig.SetToDefaults">
+            <summary>
+            Sets the symbology decode parameters to their default settings.
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.SymbologyConfig.GetMinMaxRange(System.Int32@,System.Int32@)">
+            <summary>
+            Returns the minimum and maximum allowable length value
+            for the symbolgy.
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.SymbologyConfig.mask">
+            <summary>
+            Bit mask is used to indicate which properties: flags, minLength
+            or maxLength should be written or read by the WriteConfig
+            and ReadConfig methods.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.SymbologyConfig.symId">
+            <summary>
+            Symbology Identifier
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.SymbologyConfig.symConfigType">
+            <summary> Symbology configuration type identifier </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.SymbologyConfig.flags">
+            <summary>
+            The flags property is  used to enable and disable various 
+            symbology options.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.SymbologyConfig.minLength">
+            <summary>
+            Used to get or set the minmum allowable length of a symbology.
+            </summary>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.SymbologyConfig.maxLength">
+            <summary>
+            Used to get or set the maximum allowable length of a symbology.
+            </summary>
+        </member>
+        <member name="T:Honeywell.DataCollection.Decoding.DecodeException">
+            <summary>
+            The custom DecodeException class is derived from the standard Exception 
+            class and is used to identify errors that occur in the decode control. 
+            Decode Exceptions can be caught to help provide detailed information 
+            regarding errors that may occur within the application related to scanning.
+            Below is an example using the DecodeException class.
+            
+            try
+            {
+                oDecodeControl.ScanBarcode();
+            }
+            catch (DecodeException dex)
+            {
+                MessageBox.Show(dex.Message);
+            }
+            </summary>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeException.#ctor(Honeywell.DataCollection.Decoding.Result)">
+            <summary>
+            This constructor accepts a Result type parameter and calls
+            the lower layer decoder logic to retrieve the string value 
+            for the decErrorString property.
+            </summary>
+            <param name="decResult">
+            Result\error code to be returned by decResult property
+            </param>
+        </member>
+        <member name="M:Honeywell.DataCollection.Decoding.DecodeException.#ctor(Honeywell.DataCollection.Decoding.Result,System.String)">
+            <summary>
+            This constructor will allow for both an result\error code
+            and an error string to be passed as parameters.
+            </summary>
+            <param name="decResult">
+            Result\error code to be returned by decResult property</param>
+            <param name="message">
+            Error string to be returned by decErrorString property
+            </param>
+        </member>
+        <member name="P:Honeywell.DataCollection.Decoding.DecodeException.ResultCode">
+            <summary>Result code identifying the cause for the exception. </summary>
+        </member>
+    </members>
+</doc>

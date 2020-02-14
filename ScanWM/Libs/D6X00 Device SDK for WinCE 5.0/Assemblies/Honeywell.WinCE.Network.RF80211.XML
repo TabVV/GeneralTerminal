@@ -1,0 +1,288 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Honeywell.WinCE.Network.RF80211</name>
+    </assembly>
+    <members>
+        <member name="T:Honeywell.WinCE.Network.RF80211.RFServices">
+            <summary>
+            RFServices: Services available to manage the RF adapter.
+            </summary>
+            <remarks>These services will not work properly and will return false
+            if the WLAN utility is already running. You must make sure that nothing
+            else is using the RF Adapter.
+            </remarks>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.#ctor">
+            <summary>
+            RFServices Constructor
+            </summary>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.OpenRFAdapter(System.IntPtr@)">
+            <summary>
+            Optional routine to open a file handle to the adapter. If not performed, 
+            API routines open and close for each function. Note that only one such 
+            file handle can be open to the adapter at a time.
+            </summary>
+            <param name="adapter">If this parameter is not NULL, it receives the 
+            open file handle. This file handle is generally not used, 
+            though it is occasionally useful for invoking adapter IOCTL's.
+            </param>
+            <returns>
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.CloseRFAdapter">
+            <summary>
+            Closes the RF adapter.
+            </summary>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.GetRFAdapterEnableState(System.Boolean@)">
+            <summary>
+            Determines whether the RF adapter is currently enabled or disabled.
+            </summary>
+            <param name="enabled">A reference to receive the boolean enabled state.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.SetRFAdapterEnableState(System.Boolean)">
+            <summary>
+            Enables or disables the RF adapter.
+            </summary>
+            <param name="enable">Determines whether the adapter should be enabled.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.GetRFAdapterStatus(Honeywell.WinCE.Network.RF80211.RFServices.RFStatus@)">
+            <summary>
+            Gets the current state of the RF adapter.
+            </summary>
+            <param name="status">A reference to receive the status of the adapter.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+            <remarks>If trying to determine only whether the adapter is associated 
+            or not, it is recommended that the more general GetRFAdapterLinkStatus 
+            be used instead.
+            </remarks>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.GetRFAdapterLinkStatus(System.Int32@,System.Int32@,System.Boolean@)">
+            <summary>
+            Gets the current link state of the RF adapter.
+            </summary>
+            <param name="linkQuality">If not NULL, this variable will receive the 
+            link quality, 0 to 100(%).
+            </param>
+            <param name="signalStrength">If not NULL, this variable will receive the 
+            signal strength, 0 to 100(%).
+            </param>
+            <param name="associated">If not NULL, this variable will receive the 
+            association state of the adapter.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.GetRFAdapterSSID(System.Byte[],System.Int32)">
+            <summary>
+            Gets the SSID of the RF adapter.
+            </summary>
+            <param name="aSSID">A byte array to receive the SSID of the adapter.
+            </param>
+            <param name="bufSize">The size of the buffer being received.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.SetRFAdapterSSID(System.Byte[],System.Boolean)">
+            <summary>
+            Sets the SSID of the RF adapter.
+            </summary>
+            <param name="aSSID">A byte array containing the SSID of the adapter.
+            </param>
+            <param name="persist">Determines whether to write this SSID to the 
+            registry, thereby persisting the SSID across warm boots
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.GetRFAdapterPowerMode(Honeywell.WinCE.Network.RF80211.RFServices.RFPowerMode@)">
+            <summary>
+            Gets the current power mode of the RF adapter.
+            </summary>
+            <param name="powerMode">A reference to receive the adapter power mode.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.SetRFAdapterPowerMode(Honeywell.WinCE.Network.RF80211.RFServices.RFPowerMode,System.Boolean)">
+            <summary>
+            Sets the current power mode of the RF adapter.
+            </summary>
+            <param name="powerMode">Determines which power mode to use.
+            </param>
+            <param name="persist">Determines whether to write this power mode to 
+            the registry, thereby persisting the power mode across warm boots.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.GetRFAdapterBSSID(System.Byte[],System.Int32@)">
+            <summary>
+            Gets the MAC address of the associated access point.
+            </summary>
+            <param name="aBSSID">A byte array to receive the MAC address of the 
+            associated access point.
+            </param>
+            <param name="bufSize">A reference to a variable which specifies the size 
+            of the buffer pointed to by the array. After this function returns, 
+            this variable will contain the actual number of bytes returned by the 
+            function.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.GetRFAdapterMACAddress(System.Byte[],System.Int32@)">
+            <summary>
+            Gets the MAC address of the adapter.
+            </summary>
+            <param name="aMACAddress">A byte array to receive the MAC address of the 
+            adapter.
+            </param>
+            <param name="bufSize">A reference to a variable which specifies the size 
+            of the buffer pointed to by the array. After this function returns, 
+            this variable will contain the actual number of bytes returned by the 
+            function.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.ResetRFAdapter">
+            <summary>
+            Resets the RF adapter by reloading firmware and resetting default values.
+            </summary>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.GetRFAdapterBSSMode(Honeywell.WinCE.Network.RF80211.RFServices.RFBssMode@)">
+            <summary>
+            Gets the current BSS mode (e.g. "ad hoc"/infrastructure) of the adapter.
+            </summary>
+            <param name="BSSMode">A reference to receive the BSS mode of the adapter.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+            <remarks>This is generally only used with the "ad hoc" BSS mode.
+            </remarks>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.SetRFAdapterBSSMode(Honeywell.WinCE.Network.RF80211.RFServices.RFBssMode,System.Boolean)">
+            <summary>
+            Sets the BSS mode (e.g. "ad hoc"/infrastructure) of the adapter.
+            </summary>
+            <param name="BSSMode">Determines which BSS mode to use.
+            </param>
+            <param name="persist">Determines whether to write this BSS mode to the 
+            registry, thereby persisting the BSS mode across warm boots.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.GetRFAdapterChannel(System.Int32@)">
+            <summary>
+            Gets the current channel of the RF adapter.
+            </summary>
+            <param name="channel">A reference to receive the channel of the adapter.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.SetRFAdapterChannel(System.Int32,System.Boolean)">
+            <summary>
+            Sets the current channel of the RF adapter.
+            </summary>
+            <param name="channel">Determines which channel to use.
+            </param>
+            <param name="persist">Determines whether to write this channel to the 
+            registry, thereby persisting the channel across warm boots.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+            <remarks>This is generally only used with the "ad hoc" BSS mode.
+            </remarks>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.ScanRFAdapterBSSIDList">
+            <summary>
+            Scan the RF Adapter list for active SSID codes.
+            </summary>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="M:Honeywell.WinCE.Network.RF80211.RFServices.IterateRFAdapterBSSIDList(System.UInt32,System.Byte[],System.UInt32,System.Byte[],System.UInt32,System.UInt32@,System.UInt32@,Honeywell.WinCE.Network.RF80211.RFServices.RFBssMode@)">
+            <summary>
+            Iterate through the RF Adapter list of active SSID codes and retrieve
+            the specified parameters. ScanRFAdapterBSSIDList must be called first
+            in order to populate this list.
+            </summary>
+            <param name="index">An index into the RF adapter list.
+            </param>
+            <param name="aMACAddr">A byte array to receive the MAC address of the adapter.
+            </param>
+            <param name="addrSize">The size of the address buffer being received.
+            </param>
+            <param name="aSSID">A byte array to receive the BSSID of the adapter.
+            </param>
+            <param name="idSize">The size of the SSID buffer being received.
+            </param>
+            <param name="WEP">A reference to receive the WEP of the adapter.
+            </param>
+            <param name="signalStrength">A reference to receive the signal strength 
+            of the adapter.
+            </param>
+            <param name="BSSMode">A reference to receive the BSS mode of the adapter.
+            </param>
+            <returns> 
+            The status of the method; true = successful.
+            </returns>
+        </member>
+        <member name="T:Honeywell.WinCE.Network.RF80211.RFServices.RFStatus">
+            <summary>
+            Enumeration of RF Status codes.
+            </summary>
+        </member>
+        <member name="T:Honeywell.WinCE.Network.RF80211.RFServices.RFPowerMode">
+            <summary>
+            Enumeration of RF Power modes.
+            </summary>
+        </member>
+        <member name="T:Honeywell.WinCE.Network.RF80211.RFServices.RFBssMode">
+            <summary>
+            Enumeration of Infrastructure modes.
+            </summary>
+        </member>
+        <member name="T:Honeywell.WinCE.Network.RF80211.RFServices.CBool">
+            <summary>
+            Defines a "C" BOOL which is a 32-bit value.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -481,7 +481,7 @@ namespace PDA.Service
 
 
         // список Control для редактирования
-        public class EditListC_Old : List<Control>
+        public class EditListC : List<Control>
         {
             private int
                 m_CurI;
@@ -503,13 +503,13 @@ namespace PDA.Service
             }
 
 
-            public EditListC_Old():base()
+            public EditListC():base()
             {
                 dgVer = new VerifyEditFields(VV);
             }
 
 
-            public EditListC_Old(AppC.VerifyEditFields dgx)
+            public EditListC(AppC.VerifyEditFields dgx)
                 : base()
             {
                 dgVer = dgx;

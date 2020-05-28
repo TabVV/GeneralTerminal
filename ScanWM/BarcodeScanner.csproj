@@ -87,29 +87,36 @@
     </Reference>
     <Reference Include="datalogic.datacapture, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Datalogic\Datalogic Mobility Kit for Visual Studio 2005\datalogic.datacapture.dll</HintPath>
+      <HintPath>Libs\Datalogic\datalogic.datacapture.dll</HintPath>
     </Reference>
     <Reference Include="datalogic.pdc, Version=1.0.0.8, Culture=neutral, PublicKeyToken=68fcc4f691cd53e0">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Datalogic\Datalogic Mobility Kit for Visual Studio 2005\datalogic.pdc.dll</HintPath>
+      <HintPath>Libs\Datalogic\datalogic.pdc.dll</HintPath>
     </Reference>
     <Reference Include="datalogic.wireless2005, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Datalogic\Datalogic Mobility Kit for Visual Studio 2005\datalogic.wireless2005.dll</HintPath>
+      <HintPath>Libs\Datalogic\datalogic.wireless2005.dll</HintPath>
     </Reference>
-    <Reference Include="DOTNET_MHL_V3, Version=3.0.1.25675, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DOTNET_MHL_V3, Version=3.0.1.38642, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DOTNET_MHL_V3_2008\DOTNET_MHL_V3\bin\Release\DOTNET_MHL_V3.dll</HintPath>
+      <HintPath>Libs\RFID\DOTNET_MHL_V3\bin\Release\DOTNET_MHL_V3.dll</HintPath>
     </Reference>
-    <Reference Include="HandHeldProducts.Embedded.Decoding.DecodeAssembly, Version=2.202.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL" />
-    <Reference Include="HandHeldProducts.Embedded.Wireless.RF80211Assembly, Version=2.202.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL" />
-    <Reference Include="HHP.DataCollection.Common, Version=2.114.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL" />
-    <Reference Include="HHP.DataCollection.PDTDecoding, Version=2.114.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL" />
-    <Reference Include="HHP.Network.RadioMgr, Version=2.114.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL">
+    <Reference Include="HandHeldProducts.Embedded.Decoding.DecodeAssembly, Version=2.202.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Microsoft Visual Studio 8\SmartDevices\SDK\CompactFramework\2.0\v2.0\WindowsCE\HHP.Network.RadioMgr.dll</HintPath>
+      <HintPath>Libs\HandHeldProducts\HandHeldProducts.Embedded.Decoding.DecodeAssembly.dll</HintPath>
     </Reference>
-    <Reference Include="HHP.Network.RF80211, Version=2.114.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL" />
+    <Reference Include="HandHeldProducts.Embedded.Wireless.RF80211Assembly, Version=2.202.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\HandHeldProducts\HandHeldProducts.Embedded.Wireless.RF80211Assembly.dll</HintPath>
+    </Reference>
+    <Reference Include="HHP.DataCollection.Common, Version=2.114.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\HandHeldProducts\HHP.DataCollection.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HHP.DataCollection.PDTDecoding, Version=2.114.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\HandHeldProducts\HHP.DataCollection.PDTDecoding.dll</HintPath>
+    </Reference>
     <Reference Include="Honeywell.DataCollection.WinCE.Common, Version=2.107.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\D6X00 Device SDK for WinCE 5.0\Assemblies\Honeywell.DataCollection.WinCE.Common.dll</HintPath>
@@ -165,7 +172,10 @@
       <Name>System.XML</Name>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Terminal.API, Version=1.11.0.12, Culture=neutral, PublicKeyToken=0aecfc7b0133c129" />
+    <Reference Include="Terminal.API, Version=1.11.0.12, Culture=neutral, PublicKeyToken=0aecfc7b0133c129">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Datalogic\Terminal.API.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs">

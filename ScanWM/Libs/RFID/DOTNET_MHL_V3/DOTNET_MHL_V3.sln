@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DOTNET_MHL_V3", "DOTNET_MHL_V3.csproj", "{CE20FB5A-22E0-4111-BA34-15C46978FE80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Morphic SDK (ARMV4I) = Debug|Morphic SDK (ARMV4I)
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Morphic SDK (ARMV4I) = Release|Morphic SDK (ARMV4I)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Debug|Morphic SDK (ARMV4I).ActiveCfg = Debug|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Release|Morphic SDK (ARMV4I).ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

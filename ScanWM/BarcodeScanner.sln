@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeScanner", "BarcodeScanner.csproj", "{19E11EB3-AD56-4E27-9045-3060BB369146}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DOTNET_MHL_V3", "Libs\RFID\DOTNET_MHL_V3\DOTNET_MHL_V3.csproj", "{CE20FB5A-22E0-4111-BA34-15C46978FE80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{19E11EB3-AD56-4E27-9045-3060BB369146}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19E11EB3-AD56-4E27-9045-3060BB369146}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19E11EB3-AD56-4E27-9045-3060BB369146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE20FB5A-22E0-4111-BA34-15C46978FE80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

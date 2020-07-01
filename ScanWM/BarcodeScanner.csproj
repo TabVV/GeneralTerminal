@@ -97,10 +97,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\Datalogic\datalogic.wireless2005.dll</HintPath>
     </Reference>
-    <Reference Include="DOTNET_MHL_V3, Version=3.0.1.38642, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\RFID\DOTNET_MHL_V3\bin\Release\DOTNET_MHL_V3.dll</HintPath>
-    </Reference>
     <Reference Include="HandHeldProducts.Embedded.Decoding.DecodeAssembly, Version=2.202.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\HandHeldProducts\HandHeldProducts.Embedded.Decoding.DecodeAssembly.dll</HintPath>
@@ -196,6 +192,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Libs\RFID\DOTNET_MHL_V3\DOTNET_MHL_V3.csproj">
+      <Project>{CE20FB5A-22E0-4111-BA34-15C46978FE80}</Project>
+      <Name>DOTNET_MHL_V3</Name>
+    </ProjectReference>
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

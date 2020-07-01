@@ -27,3 +27,4 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+#!DOTNET_MHL_V3.dll

@@ -28,3 +28,5 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 #!DOTNET_MHL_V3.dll
+#!MExprDll.dll
+#!MCrDlg.dll

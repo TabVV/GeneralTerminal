@@ -525,6 +525,8 @@ namespace SkladAll
             public string Text;
             public int
                 nCount = 0;
+            public int
+                nAdded = 0;
 
             public List<DataGridTableStyle> xTStyles;
 
